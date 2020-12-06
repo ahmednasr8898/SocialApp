@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		7978A283257B257900650E9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A282257B257900650E9A /* AppDelegate.swift */; };
 		7978A285257B257900650E9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A284257B257900650E9A /* SceneDelegate.swift */; };
-		7978A287257B257900650E9A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A286257B257900650E9A /* ViewController.swift */; };
+		7978A287257B257900650E9A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A286257B257900650E9A /* AuthViewController.swift */; };
 		7978A28A257B257900650E9A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7978A288257B257900650E9A /* Main.storyboard */; };
 		7978A28C257B259F00650E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7978A28B257B259F00650E9A /* Assets.xcassets */; };
 		7978A28F257B259F00650E9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7978A28D257B259F00650E9A /* LaunchScreen.storyboard */; };
+		7978A29B257B318B00650E9A /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A29A257B318B00650E9A /* UILabel+Extension.swift */; };
+		7978A2A3257B321100650E9A /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A2A2257B321100650E9A /* UIDevice+Extension.swift */; };
+		7978A2A8257B331C00650E9A /* CustomFontSizeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A2A7257B331C00650E9A /* CustomFontSizeLabel.swift */; };
+		799D84AB257B3BAE0057F6F1 /* UIViewContoller+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D84AA257B3BAE0057F6F1 /* UIViewContoller+Extension.swift */; };
+		799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D84AE257B3D250057F6F1 /* LoginViewController.swift */; };
+		79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B4257C72470051D0EB /* UITextField+Extension.swift */; };
+		79AB88B8257C7CA00051D0EB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7978A27F257B257900650E9A /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7978A282257B257900650E9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7978A284257B257900650E9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7978A286257B257900650E9A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7978A286257B257900650E9A /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		7978A289257B257900650E9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7978A28B257B259F00650E9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7978A28E257B259F00650E9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7978A290257B259F00650E9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7978A29A257B318B00650E9A /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		7978A2A2257B321100650E9A /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		7978A2A7257B331C00650E9A /* CustomFontSizeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontSizeLabel.swift; sourceTree = "<group>"; };
+		799D84AA257B3BAE0057F6F1 /* UIViewContoller+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewContoller+Extension.swift"; sourceTree = "<group>"; };
+		799D84AE257B3D250057F6F1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		79AB88B4257C72470051D0EB /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +70,70 @@
 		7978A281257B257900650E9A /* SocialApp */ = {
 			isa = PBXGroup;
 			children = (
-				7978A282257B257900650E9A /* AppDelegate.swift */,
-				7978A284257B257900650E9A /* SceneDelegate.swift */,
-				7978A286257B257900650E9A /* ViewController.swift */,
-				7978A288257B257900650E9A /* Main.storyboard */,
-				7978A28B257B259F00650E9A /* Assets.xcassets */,
-				7978A28D257B259F00650E9A /* LaunchScreen.storyboard */,
-				7978A290257B259F00650E9A /* Info.plist */,
+				7978A2AB257B371300650E9A /* Delegate */,
+				7978A298257B314F00650E9A /* Controllers */,
+				7978A2AF257B373C00650E9A /* Storyboard */,
+				7978A2A6257B32FE00650E9A /* CustomUI */,
+				7978A299257B316500650E9A /* Extension */,
+				7978A2B0257B375500650E9A /* Resources */,
 			);
 			path = SocialApp;
+			sourceTree = "<group>";
+		};
+		7978A298257B314F00650E9A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7978A286257B257900650E9A /* AuthViewController.swift */,
+				799D84AE257B3D250057F6F1 /* LoginViewController.swift */,
+				79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		7978A299257B316500650E9A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7978A29A257B318B00650E9A /* UILabel+Extension.swift */,
+				7978A2A2257B321100650E9A /* UIDevice+Extension.swift */,
+				799D84AA257B3BAE0057F6F1 /* UIViewContoller+Extension.swift */,
+				79AB88B4257C72470051D0EB /* UITextField+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		7978A2A6257B32FE00650E9A /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				7978A2A7257B331C00650E9A /* CustomFontSizeLabel.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		7978A2AB257B371300650E9A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				7978A282257B257900650E9A /* AppDelegate.swift */,
+				7978A284257B257900650E9A /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		7978A2AF257B373C00650E9A /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				7978A288257B257900650E9A /* Main.storyboard */,
+				7978A28D257B259F00650E9A /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		7978A2B0257B375500650E9A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7978A290257B259F00650E9A /* Info.plist */,
+				7978A28B257B259F00650E9A /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +206,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7978A287257B257900650E9A /* ViewController.swift in Sources */,
+				79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */,
+				7978A287257B257900650E9A /* AuthViewController.swift in Sources */,
+				7978A29B257B318B00650E9A /* UILabel+Extension.swift in Sources */,
 				7978A283257B257900650E9A /* AppDelegate.swift in Sources */,
+				79AB88B8257C7CA00051D0EB /* SignUpViewController.swift in Sources */,
+				799D84AB257B3BAE0057F6F1 /* UIViewContoller+Extension.swift in Sources */,
+				799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */,
+				7978A2A3257B321100650E9A /* UIDevice+Extension.swift in Sources */,
 				7978A285257B257900650E9A /* SceneDelegate.swift in Sources */,
+				7978A2A8257B331C00650E9A /* CustomFontSizeLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +364,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L5Y442FJFB;
-				INFOPLIST_FILE = SocialApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SocialApp/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +383,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L5Y442FJFB;
-				INFOPLIST_FILE = SocialApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SocialApp/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
