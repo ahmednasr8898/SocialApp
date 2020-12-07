@@ -20,6 +20,11 @@
 		799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D84AE257B3D250057F6F1 /* LoginViewController.swift */; };
 		79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B4257C72470051D0EB /* UITextField+Extension.swift */; };
 		79AB88B8257C7CA00051D0EB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */; };
+		79D57BE3257DB3B0003EA0F6 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */; };
+		79D57BE6257DB861003EA0F6 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE5257DB861003EA0F6 /* CustomUIView.swift */; };
+		79D57BEA257DC205003EA0F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE9257DC205003EA0F6 /* HomeViewController.swift */; };
+		79D57BF2257DC344003EA0F6 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BF0257DC344003EA0F6 /* HomeTableViewCell.swift */; };
+		79D57BF3257DC344003EA0F6 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D57BF1257DC344003EA0F6 /* HomeTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +43,11 @@
 		799D84AE257B3D250057F6F1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		79AB88B4257C72470051D0EB /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		79D57BE5257DB861003EA0F6 /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
+		79D57BE9257DC205003EA0F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		79D57BF0257DC344003EA0F6 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		79D57BF1257DC344003EA0F6 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,8 @@
 				7978A286257B257900650E9A /* AuthViewController.swift */,
 				799D84AE257B3D250057F6F1 /* LoginViewController.swift */,
 				79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */,
+				79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */,
+				79D57BE9257DC205003EA0F6 /* HomeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -105,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				7978A2A7257B331C00650E9A /* CustomFontSizeLabel.swift */,
+				79D57BE5257DB861003EA0F6 /* CustomUIView.swift */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -121,6 +134,7 @@
 		7978A2AF257B373C00650E9A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				79D57BEF257DC32E003EA0F6 /* HomeCell */,
 				7978A288257B257900650E9A /* Main.storyboard */,
 				7978A28D257B259F00650E9A /* LaunchScreen.storyboard */,
 			);
@@ -134,6 +148,15 @@
 				7978A28B257B259F00650E9A /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		79D57BEF257DC32E003EA0F6 /* HomeCell */ = {
+			isa = PBXGroup;
+			children = (
+				79D57BF0257DC344003EA0F6 /* HomeTableViewCell.swift */,
+				79D57BF1257DC344003EA0F6 /* HomeTableViewCell.xib */,
+			);
+			path = HomeCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +218,7 @@
 			files = (
 				7978A28F257B259F00650E9A /* LaunchScreen.storyboard in Resources */,
 				7978A28C257B259F00650E9A /* Assets.xcassets in Resources */,
+				79D57BF3257DC344003EA0F6 /* HomeTableViewCell.xib in Resources */,
 				7978A28A257B257900650E9A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,6 +231,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */,
+				79D57BE6257DB861003EA0F6 /* CustomUIView.swift in Sources */,
+				79D57BF2257DC344003EA0F6 /* HomeTableViewCell.swift in Sources */,
 				7978A287257B257900650E9A /* AuthViewController.swift in Sources */,
 				7978A29B257B318B00650E9A /* UILabel+Extension.swift in Sources */,
 				7978A283257B257900650E9A /* AppDelegate.swift in Sources */,
@@ -215,6 +241,8 @@
 				799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */,
 				7978A2A3257B321100650E9A /* UIDevice+Extension.swift in Sources */,
 				7978A285257B257900650E9A /* SceneDelegate.swift in Sources */,
+				79D57BE3257DB3B0003EA0F6 /* AddPostViewController.swift in Sources */,
+				79D57BEA257DC205003EA0F6 /* HomeViewController.swift in Sources */,
 				7978A2A8257B331C00650E9A /* CustomFontSizeLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
