@@ -3,6 +3,7 @@
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -285,8 +286,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LZQ-Jq-r6o">
-                        <barButtonItem key="leftBarButtonItem" title="log out" id="DiY-dV-nJz">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="DiY-dV-nJz">
+                            <imageReference key="image" image="line.horizontal.3" catalog="system" renderingMode="original"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="showMenuOnClick:" destination="0z5-56-02H" id="ec6-m9-pNt"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="new post" id="iKV-hl-Jzl">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -423,6 +428,7 @@
     </scenes>
     <resources>
         <image name="firebase" width="48" height="48"/>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="picture" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -5,13 +5,16 @@
 //  Created by Ahmed Nasr on 12/7/20.
 //
 import UIKit
+import SideMenu
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var homeTableView: UITableView!
+    var menu: SideMenuNavigationController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
+        setUpMenu()
     }
     func setUpTableView(){
         homeTableView.dataSource = self
@@ -21,6 +24,17 @@ class HomeViewController: UIViewController {
     @IBAction func addNewPostOnClick(_ sender: UIBarButtonItem) {
         self.goToByPresent(storyboardName: "Main", viewControllerName: AddPostViewController.self, showAs: .automatic)
     }
+    func setUpMenu(){
+        menu = SideMenuNavigationController(rootViewController: MenuViewController())
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+        menu?.leftSide = true
+    }
+    
+    @IBAction func showMenuOnClick(_ sender: UIBarButtonItem) {
+        present(menu!, animated: true)
+    }
+    
 }
 extension HomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
