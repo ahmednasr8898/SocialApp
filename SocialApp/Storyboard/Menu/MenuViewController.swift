@@ -5,6 +5,7 @@
 //  Created by Ahmed Nasr on 12/8/20.
 //
 import UIKit
+import  FirebaseAuth
 class MenuViewController: UITableViewController {
         
     let items = ["Profile", "Settings", "Log Out"]
@@ -35,7 +36,19 @@ class MenuViewController: UITableViewController {
         }else if itemIndex == 1{
             print("go to settings page")
         }else if itemIndex == 2{
-            print("log Out")
+            logOut()
+        }
+    }
+    func logOut(){
+        self.showIndicator(withTitle: "Log Out", and: "")
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            self.hideIndicator()
+            self.goToByNavigate(storyboardName: "Main", viewControllerName: AuthViewController.self)
+        }catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+            self.view.makeToast("faild to log out")
         }
     }
 }

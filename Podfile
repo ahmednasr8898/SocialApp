@@ -7,5 +7,10 @@ target 'SocialApp' do
 
   # Pods for SocialApp
   pod 'SideMenu'
-
+  pod 'Firebase/Analytics'
+  pod 'FirebaseUI/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'Toast-Swift', '~> 5.0.1'
 end

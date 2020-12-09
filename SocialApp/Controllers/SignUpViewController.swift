@@ -5,6 +5,9 @@
 //  Created by Ahmed Nasr on 12/6/20.
 //
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -31,6 +34,7 @@ class SignUpViewController: UIViewController {
         setUpNavigation()
     }
     func setUpNavigation(){
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         let backButton = UIBarButtonItem()
         backButton.image = UIImage(systemName: "chevron.backward")
         backButton.target = self
@@ -40,6 +44,7 @@ class SignUpViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemPink]
+        navigationController?.navigationBar.backgroundColor = UIColor.white
     }
     @objc func backButtonOnClick(){
         navigationController?.popViewController(animated: true)
@@ -61,5 +66,64 @@ class SignUpViewController: UIViewController {
         topPasswordConstriant.constant = self.view.frame.height * 0.021
         topConfirmPasswordConstriant.constant = self.view.frame.height * 0.021
         topCraeteAccountConstraint.constant = self.view.frame.height * 0.032
+    }
+    @IBAction func singupOnClick(_ sender: UIButton) {
+        if checkVaild(){
+            signUp()
+        }else{
+            self.showAlert(title: "happend problem", messege: "check all fields...")
+        }
+    }
+    func signUp(){
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        let phone = phoneTextField.text
+        let name = nameTextField.text
+        self.showIndicator(withTitle: "loading", and: "creating new user")
+        Auth.auth().createUser(withEmail: email ?? "", password: password ?? "") { (res, error) in
+            if error == nil{
+                self.hideIndicator()
+                print("success in create new account")
+                //create new user in database
+                self.createNewUser(name: name!, email: email!, phone: phone!)
+                //save defult profile picture
+                self.saveProfilePicture()
+                //go to home page
+                self.navigationController?.popToRootViewController(animated: true)
+            }else{
+                self.hideIndicator()
+                print("create is falid")
+                self.view.makeToast("faild in create new account")
+            }
+        }
+    }
+    func checkVaild()-> Bool{
+        guard nameTextField.text != nil, !nameTextField.text!.isEmpty, emailTextField.text != nil, !emailTextField.text!.isEmpty ,  phoneTextField.text != nil, !phoneTextField.text!.isEmpty, passwordTextField.text != nil, !passwordTextField.text!.isEmpty, confiremPasswordTextField.text != nil, !confiremPasswordTextField.text!.isEmpty, passwordTextField.text == confiremPasswordTextField.text
+        else {
+            return false
+        }
+        return true
+    }
+    func createNewUser(name: String, email: String, phone: String){
+        guard let userID = Auth.auth().currentUser?.uid else{
+            self.view.makeToast("happend probelm")
+            return
+        }
+        Database.database().reference().child("Users").child(userID).setValue(["name": name, "email": email, "phone": phone])
+    }
+    func saveProfilePicture(){
+        guard let userID = Auth.auth().currentUser?.uid,let profilePicture = UIImage(named: "user")?.jpegData(compressionQuality: 0.5) else{
+            self.view.makeToast("happend probelm")
+            return
+        }
+        Storage.storage().reference().child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg")
+            .putData(profilePicture, metadata: nil) { (_, error) in
+                if error == nil{
+                    print("image is Uploaded")
+                }else{
+                    print("Upload image is faild\(String(describing: error?.localizedDescription))")
+                    self.view.makeToast("Upload image is faild")
+            }
+        }
     }
 }

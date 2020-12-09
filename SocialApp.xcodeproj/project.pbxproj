@@ -30,6 +30,7 @@
 		79D57BEA257DC205003EA0F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE9257DC205003EA0F6 /* HomeViewController.swift */; };
 		79D57BF2257DC344003EA0F6 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BF0257DC344003EA0F6 /* HomeTableViewCell.swift */; };
 		79D57BF3257DC344003EA0F6 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79D57BF1257DC344003EA0F6 /* HomeTableViewCell.xib */; };
+		79EC380E2580644E00DB02B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79EC380D2580644D00DB02B6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		79D57BE9257DC205003EA0F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		79D57BF0257DC344003EA0F6 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		79D57BF1257DC344003EA0F6 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewCell.xib; sourceTree = "<group>"; };
+		79EC380D2580644D00DB02B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B0B234BB4FEA09B87919F668 /* Pods_SocialApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocialApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C86684A94B10E5611300C0 /* Pods-SocialApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocialApp.release.xcconfig"; path = "Target Support Files/Pods-SocialApp/Pods-SocialApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +131,7 @@
 				7978A2A6257B32FE00650E9A /* CustomUI */,
 				7978A299257B316500650E9A /* Extension */,
 				7978A2B0257B375500650E9A /* Resources */,
+				79EC380D2580644D00DB02B6 /* GoogleService-Info.plist */,
 			);
 			path = SocialApp;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				7978A27C257B257900650E9A /* Frameworks */,
 				7978A27D257B257900650E9A /* Resources */,
 				94EEAC6C3C06B165EEA660B5 /* [CP] Embed Pods Frameworks */,
+				7C8639E0E0F073E931D3541A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -276,12 +280,30 @@
 				7978A28C257B259F00650E9A /* Assets.xcassets in Resources */,
 				79D57BF3257DC344003EA0F6 /* HomeTableViewCell.xib in Resources */,
 				7978A28A257B257900650E9A /* Main.storyboard in Resources */,
+				79EC380E2580644E00DB02B6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7C8639E0E0F073E931D3541A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SocialApp/Pods-SocialApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SocialApp/Pods-SocialApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SocialApp/Pods-SocialApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		94EEAC6C3C06B165EEA660B5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
