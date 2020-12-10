@@ -8,6 +8,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import Toast_Swift
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -84,10 +85,12 @@ class SignUpViewController: UIViewController {
             if error == nil{
                 self.hideIndicator()
                 print("success in create new account")
-                //create new user in database
-                self.createNewUser(name: name!, email: email!, phone: phone!)
-                //save defult profile picture
-                self.saveProfilePicture()
+                //get user id
+                guard let userID = Auth.auth().currentUser?.uid else {return}
+                //create new user
+                self.createNewUser(userID: userID, name: name!, email: email!, phone: phone!)
+                //save profile picture
+                self.saveProfilePicture(userID: userID)
                 //go to home page
                 self.navigationController?.popToRootViewController(animated: true)
             }else{
@@ -104,15 +107,13 @@ class SignUpViewController: UIViewController {
         }
         return true
     }
-    func createNewUser(name: String, email: String, phone: String){
-        guard let userID = Auth.auth().currentUser?.uid else{
-            self.view.makeToast("happend probelm")
-            return
-        }
-        Database.database().reference().child("Users").child(userID).setValue(["name": name, "email": email, "phone": phone])
+}
+extension SignUpViewController{
+    func createNewUser(userID: String, name: String, email: String, phone: String){
+        Database.database().reference().child("Users").child(userID).child("PersonalInformation").setValue(["name": name, "email": email, "phone": phone])
     }
-    func saveProfilePicture(){
-        guard let userID = Auth.auth().currentUser?.uid,let profilePicture = UIImage(named: "user")?.jpegData(compressionQuality: 0.5) else{
+    func saveProfilePicture(userID: String){
+        guard let profilePicture = UIImage(named: "user")?.jpegData(compressionQuality: 0.5) else{
             self.view.makeToast("happend probelm")
             return
         }
@@ -127,3 +128,4 @@ class SignUpViewController: UIViewController {
         }
     }
 }
+

@@ -102,6 +102,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="descriptionPostLabel" destination="7Yn-mf-frK" id="DO4-2b-1Su"/>
+                <outlet property="loveButton" destination="sfH-hC-OFA" id="rD7-P6-RPb"/>
+                <outlet property="numOfLoveLabel" destination="nFg-7Q-Gop" id="AF3-Dd-syn"/>
                 <outlet property="postImageView" destination="o90-X3-GfM" id="dMn-OL-vO7"/>
                 <outlet property="postUIView" destination="E5n-m5-VRN" id="S5y-DJ-LgK"/>
                 <outlet property="userImageView" destination="X1c-Vn-vEC" id="akU-nW-6Sg"/>

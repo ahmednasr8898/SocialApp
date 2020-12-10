@@ -21,6 +21,7 @@
 		7978A29B257B318B00650E9A /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A29A257B318B00650E9A /* UILabel+Extension.swift */; };
 		7978A2A3257B321100650E9A /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A2A2257B321100650E9A /* UIDevice+Extension.swift */; };
 		7978A2A8257B331C00650E9A /* CustomFontSizeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A2A7257B331C00650E9A /* CustomFontSizeLabel.swift */; };
+		798FB309258176BE00DD4A5D /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FB308258176BE00DD4A5D /* PostsModel.swift */; };
 		799D84AB257B3BAE0057F6F1 /* UIViewContoller+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D84AA257B3BAE0057F6F1 /* UIViewContoller+Extension.swift */; };
 		799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D84AE257B3D250057F6F1 /* LoginViewController.swift */; };
 		79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B4257C72470051D0EB /* UITextField+Extension.swift */; };
@@ -50,6 +51,7 @@
 		7978A29A257B318B00650E9A /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		7978A2A2257B321100650E9A /* UIDevice+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		7978A2A7257B331C00650E9A /* CustomFontSizeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontSizeLabel.swift; sourceTree = "<group>"; };
+		798FB308258176BE00DD4A5D /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		799D84AA257B3BAE0057F6F1 /* UIViewContoller+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewContoller+Extension.swift"; sourceTree = "<group>"; };
 		799D84AE257B3D250057F6F1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		79AB88B4257C72470051D0EB /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		7978A281257B257900650E9A /* SocialApp */ = {
 			isa = PBXGroup;
 			children = (
+				798FB3072581769800DD4A5D /* Model */,
 				7978A2AB257B371300650E9A /* Delegate */,
 				7978A298257B314F00650E9A /* Controllers */,
 				7978A2AF257B373C00650E9A /* Storyboard */,
@@ -195,6 +198,14 @@
 				7978A28B257B259F00650E9A /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		798FB3072581769800DD4A5D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				798FB308258176BE00DD4A5D /* PostsModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		79D57BEF257DC32E003EA0F6 /* HomeCell */ = {
@@ -356,6 +367,7 @@
 				79D57BF2257DC344003EA0F6 /* HomeTableViewCell.swift in Sources */,
 				7978A287257B257900650E9A /* AuthViewController.swift in Sources */,
 				7978A29B257B318B00650E9A /* UILabel+Extension.swift in Sources */,
+				798FB309258176BE00DD4A5D /* PostsModel.swift in Sources */,
 				7978A283257B257900650E9A /* AppDelegate.swift in Sources */,
 				79AB88B8257C7CA00051D0EB /* SignUpViewController.swift in Sources */,
 				799D84AB257B3BAE0057F6F1 /* UIViewContoller+Extension.swift in Sources */,

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BOG-uY-n0T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6Zg-Jt-VgW">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -270,50 +269,46 @@
             <point key="canvasLocation" x="3334" y="51"/>
         </scene>
         <!--Home View Controller-->
-        <scene sceneID="kEx-VV-cfr">
+        <scene sceneID="QSz-2v-jQz">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="0z5-56-02H" customClass="HomeViewController" customModule="SocialApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="x24-Ce-2ml">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="838"/>
+                <viewController storyboardIdentifier="HomeViewController" id="9ez-uK-c8n" customClass="HomeViewController" customModule="SocialApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AKe-qC-VeR">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="e3s-wl-bGe">
-                                <rect key="frame" x="0.0" y="8" width="428" height="830"/>
-                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dsq-CZ-fLJ">
+                                <rect key="frame" x="0.0" y="88" width="428" height="804"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="ee2-MZ-Dg7"/>
-                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <viewLayoutGuide key="safeArea" id="mYz-Ke-qPL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="e3s-wl-bGe" firstAttribute="top" secondItem="ee2-MZ-Dg7" secondAttribute="top" constant="8" id="BDy-Gp-Jpp"/>
-                            <constraint firstItem="e3s-wl-bGe" firstAttribute="leading" secondItem="ee2-MZ-Dg7" secondAttribute="leading" id="EWK-Pv-vpV"/>
-                            <constraint firstAttribute="bottom" secondItem="e3s-wl-bGe" secondAttribute="bottom" id="LkX-PN-ANJ"/>
-                            <constraint firstItem="e3s-wl-bGe" firstAttribute="trailing" secondItem="ee2-MZ-Dg7" secondAttribute="trailing" id="nat-Tv-AL3"/>
+                            <constraint firstItem="mYz-Ke-qPL" firstAttribute="trailing" secondItem="dsq-CZ-fLJ" secondAttribute="trailing" id="cfN-T4-np9"/>
+                            <constraint firstItem="mYz-Ke-qPL" firstAttribute="bottom" secondItem="dsq-CZ-fLJ" secondAttribute="bottom" id="lBr-hk-5EN"/>
+                            <constraint firstItem="dsq-CZ-fLJ" firstAttribute="leading" secondItem="mYz-Ke-qPL" secondAttribute="leading" id="olT-4h-RQS"/>
+                            <constraint firstItem="dsq-CZ-fLJ" firstAttribute="top" secondItem="mYz-Ke-qPL" secondAttribute="top" id="zV4-OC-KE0"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="LZQ-Jq-r6o">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="DiY-dV-nJz">
-                            <imageReference key="image" image="line.horizontal.3" catalog="system" renderingMode="original"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <navigationItem key="navigationItem" id="5wb-BC-8VV">
+                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="U6l-S6-Jop">
                             <connections>
-                                <action selector="showMenuOnClick:" destination="0z5-56-02H" id="ec6-m9-pNt"/>
+                                <action selector="showMenuOnClick:" destination="9ez-uK-c8n" id="po3-ux-EVZ"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="new post" id="iKV-hl-Jzl">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="rightBarButtonItem" title="new post" id="l9H-qH-fwR">
                             <connections>
-                                <action selector="addNewPostOnClick:" destination="0z5-56-02H" id="t1d-Bp-ZMN"/>
+                                <action selector="addNewPostOnClick:" destination="9ez-uK-c8n" id="WZR-9s-Alq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="homeTableView" destination="e3s-wl-bGe" id="0VD-K0-kcg"/>
+                        <outlet property="homeTableView" destination="dsq-CZ-fLJ" id="QAB-yu-GoC"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8sN-Sq-nOL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TVm-mb-hW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6040.6542056074759" y="55.723542116630675"/>
+            <point key="canvasLocation" x="6302.8037383177571" y="47.948164146868251"/>
         </scene>
         <!--Add Post View Controller-->
         <scene sceneID="Th0-MX-Jdb">
@@ -330,6 +325,9 @@
                                 <state key="normal" title="Add Photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="openGalleryOnClick:" destination="OUW-wB-Zc7" eventType="touchUpInside" id="bcC-Qz-jwd"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Uf-T3-Ssm">
                                 <rect key="frame" x="10.666666666666657" y="114.00000000000001" width="406.66666666666674" height="185.33333333333337"/>
@@ -359,6 +357,9 @@
                                 <state key="normal" title="Post">
                                     <color key="titleColor" red="1" green="0.34425050629999998" blue="0.129872813" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="uploadPostOnClick:" destination="OUW-wB-Zc7" eventType="touchUpInside" id="EmT-N1-OEm"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LzN-Fp-MiH"/>
@@ -384,6 +385,8 @@
                     </view>
                     <connections>
                         <outlet property="descriptionView" destination="7Uf-T3-Ssm" id="JMk-Z0-hSH"/>
+                        <outlet property="imageViewPost" destination="aOo-tW-2Zc" id="jew-0d-oak"/>
+                        <outlet property="messegPostTextView" destination="K2E-vl-V9p" id="itN-et-pQL"/>
                         <outlet property="rightPostConstraint" destination="gve-V4-xQK" id="i3V-kA-WDc"/>
                         <outlet property="topAddPhotoConstraint" destination="Dzb-S0-Tb3" id="jbL-n6-ybR"/>
                         <outlet property="topDescriptionConstraint" destination="V3j-hG-TvB" id="dK5-Ul-eTN"/>
@@ -393,27 +396,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UsM-xB-HiA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6758" y="51"/>
+            <point key="canvasLocation" x="7657.0093457943922" y="50.53995680345573"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="AWg-Hy-7aQ">
+        <scene sceneID="UUP-ld-IGl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BOG-uY-n0T" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Zg-Jt-VgW" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TBT-X4-0sI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qxa-Ou-eq1">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="1" green="0.42863122469999998" blue="0.39792515989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="0z5-56-02H" kind="relationship" relationship="rootViewController" id="7C4-zQ-R5V"/>
+                        <segue destination="9ez-uK-c8n" kind="relationship" relationship="rootViewController" id="kYZ-Vt-uGg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="l7c-PD-5yv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lzh-dB-jGC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5140.6542056074759" y="55.723542116630675"/>
+            <point key="canvasLocation" x="5402.8037383177571" y="47.948164146868251"/>
         </scene>
     </scenes>
     <resources>
@@ -425,9 +426,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

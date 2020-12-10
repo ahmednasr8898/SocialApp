@@ -36,7 +36,7 @@ class MenuViewController: UITableViewController {
         }else if itemIndex == 1{
             print("go to settings page")
         }else if itemIndex == 2{
-            logOut()
+            self.sureLogOut()
         }
     }
     func logOut(){
@@ -50,5 +50,15 @@ class MenuViewController: UITableViewController {
             print ("Error signing out: %@", signOutError)
             self.view.makeToast("faild to log out")
         }
+    }
+    func sureLogOut(){
+        let alert = UIAlertController(title: "Are you sure?", message: "Log Out !!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default) { (_) in
+            self.logOut()
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(okButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true, completion: nil)
     }
 }

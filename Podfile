@@ -13,4 +13,5 @@ target 'SocialApp' do
   pod 'Firebase/Storage'
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'Toast-Swift', '~> 5.0.1'
+  pod 'Kingfisher', '~> 5.0'
 end
