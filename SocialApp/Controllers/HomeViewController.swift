@@ -65,11 +65,11 @@ extension HomeViewController: UITableViewDataSource{
         cell.getPhotoPostPublisherProfile = arrOfPosts[indexPath.row]
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
         cell.postID = arrOfPosts[indexPath.row].postID
-        cell.whoLovePostButton.addTarget(self, action: #selector(go), for: .touchUpInside)
+        cell.whoLovePostButton.addTarget(self, action: #selector(gotoWhoLovepostPage), for: .touchUpInside)
         postID = arrOfPosts[indexPath.row].postID
         return cell
     }
-    @objc func go(){
+    @objc func gotoWhoLovepostPage(){
         let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
         st.postID = postID
         present(st, animated: true, completion: nil)

@@ -11,6 +11,8 @@ import FirebaseStorage
 import FirebaseAuth
 class HomeTableViewCell: UITableViewCell {
     
+    //MARK:- check if current user love post (love button is red and in selected mode)
+    
     @IBOutlet weak var postUIView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var loveButton: UIButton!
@@ -70,7 +72,7 @@ class HomeTableViewCell: UITableViewCell {
             //append 1 to love score in database and labelLove
             guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
             getCurrentUserInformation { (name, profilePictureUrl) in
-                self.ref.child("AllPosts").child(postID).child("WhoLovePost").childByAutoId().setValue(["UserID": userID, "Name": name, "profilePicture": profilePictureUrl])
+                self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(Auth.auth().currentUser!.uid).setValue(["UserID": userID, "Name": name, "profilePicture": profilePictureUrl])
                 self.getNumberOfLove { (countOfLove) in
                     let newCount = countOfLove + 1
                     self.numOfLoveLabel.text = String(newCount)
@@ -105,6 +107,19 @@ class HomeTableViewCell: UITableViewCell {
             if let value = datasnap.value as? [String: Any] {
                 guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {return}
                 complation(name, profilePicture)
+            }
+        }
+    }
+    func checkCurrentUserLovePost(complation: @escaping (_ found: Bool)->Void){
+        self.ref.child("AllPosts").child(self.postID!).child("WhoLovePost").observe(.childAdded){ snap in
+            if let value = snap.value as? [String: Any]{
+                guard let userID = value["UserID"] as? String, let currentUserID = Auth.auth().currentUser?.uid else {return}
+                if currentUserID == userID{
+                    print("I foi=unded", userID)
+                    complation(true)
+                }else{
+                    complation(false)
+                }
             }
         }
     }
