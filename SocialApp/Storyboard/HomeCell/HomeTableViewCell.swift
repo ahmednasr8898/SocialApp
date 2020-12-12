@@ -7,6 +7,8 @@
 import UIKit
 import Kingfisher
 import FirebaseDatabase
+import FirebaseStorage
+import FirebaseAuth
 class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var postUIView: UIView!
@@ -18,6 +20,8 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionPostLabel: UILabel!
     
     let ref = Database.database().reference()
+    let storage = Storage.storage().reference()
+    var postID: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,14 +55,55 @@ class HomeTableViewCell: UITableViewCell {
         sender.isSelected = !sender.isSelected
         if sender.isSelected{
             //love is red
-            print("love")
             sender.setImage(UIImage(named: "like"), for: .normal)
-            //MARK:- append 1 to love score in database
+            //append 1 to love score in database and labelLove
+            guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
+            getCurrentUserInformation { (name, profilePictureUrl) in
+                self.ref.child("AllPosts").child(postID).child("WhoLovePost").childByAutoId().setValue(["UserID": userID, "Name": name, "profilePicture": profilePictureUrl])
+                self.getNumberOfLove { (countOfLove) in
+                    let newCount = countOfLove + 1
+                    self.numOfLoveLabel.text = String(newCount)
+                    self.ref.child("AllPosts").child(postID).updateChildValues(["Love": newCount])
+                }
+            }
         }else{
             //love is white
-            print("un love")
             sender.setImage(UIImage(named: "unlike"), for: .normal)
-            //MARK:- remove 1 to love score in database
+            //remove 1 to love score in database and labelLove
+            guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
+            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(userID).removeValue()
+            self.getNumberOfLove { (countOfLove) in
+                let newCount = countOfLove - 1
+                self.numOfLoveLabel.text = String(newCount)
+                self.ref.child("AllPosts").child(postID).updateChildValues(["Love": newCount])
+            }
+        }
+    }
+    func getNumberOfLove(comlation: @escaping (_ numberOFLove: Int)->Void){
+        guard let postID = self.postID else {return}
+        ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let value = dataSnapshot.value as? [String: Any]{
+                guard let numOfLove = value["Love"] as? Int else {return}
+                comlation(numOfLove)
+            }
+        }
+    }
+    func getCurrentUserInformation(complation: @escaping (_ name: String,_ profilePictureUrl: String)-> Void){
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        ref.child("Users").child(userID).child("PersonalInformation").observeSingleEvent(of: .value) { (datasnap) in
+            if let value = datasnap.value as? [String: Any] {
+                guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {return}
+                complation(name, profilePicture)
+            }
         }
     }
 }
+/*func getWhoLovePost(){
+    self.ref.child("AllPosts").child(self.postID!).child("WhoLovePost").observe(.childAdded){ snap in
+        print("Welcom back")
+        if let value = snap.value as? [String: Any]{
+            guard let name = value["Name"] as? String, let userID = value["UserID"] as? String, let profilePictrue = value["ProfilePicture"] as? String else {return}
+            let whoLovePost = WhoLovePost(UserID: userID, name: name, imagePicture: profilePictrue)
+        }
+    }
+}*/

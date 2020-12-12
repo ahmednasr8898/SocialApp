@@ -25,6 +25,9 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var topConfirmPasswordConstriant: NSLayoutConstraint!
     @IBOutlet weak var topCraeteAccountConstraint: NSLayoutConstraint!
     
+    let ref = Database.database().reference()
+    let storage = Storage.storage().reference()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTextFields()
@@ -90,7 +93,14 @@ class SignUpViewController: UIViewController {
                 //create new user
                 self.createNewUser(userID: userID, name: name!, email: email!, phone: phone!)
                 //save profile picture
-                self.saveProfilePicture(userID: userID)
+                //save profile picture
+                self.uplaodProfilePicture(userID: userID) { (url, error) in
+                    if error != nil{
+                        print("error when upload profile picture \(String(describing: error?.localizedDescription))")
+                    }else{
+                        self.ref.child("Users").child(userID).child("PersonalInformation").child("ProfilePicture").setValue(url)
+                    }
+                }
                 //go to home page
                 self.navigationController?.popToRootViewController(animated: true)
             }else{
@@ -110,22 +120,30 @@ class SignUpViewController: UIViewController {
 }
 extension SignUpViewController{
     func createNewUser(userID: String, name: String, email: String, phone: String){
-        Database.database().reference().child("Users").child(userID).child("PersonalInformation").setValue(["name": name, "email": email, "phone": phone])
+        ref.child("Users").child(userID).child("PersonalInformation").setValue(["name": name, "email": email, "phone": phone])
     }
-    func saveProfilePicture(userID: String){
+    func uplaodProfilePicture(userID: String, complation: @escaping(_ url: String?, _ error: Error?)->Void){
         guard let profilePicture = UIImage(named: "user")?.jpegData(compressionQuality: 0.5) else{
             self.view.makeToast("happend probelm")
             return
         }
-        Storage.storage().reference().child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg")
+        storage.child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg")
             .putData(profilePicture, metadata: nil) { (_, error) in
-                if error == nil{
-                    print("image is Uploaded")
+                if error != nil{
+                    complation(nil,error)
                 }else{
-                    print("Upload image is faild\(String(describing: error?.localizedDescription))")
-                    self.view.makeToast("Upload image is faild")
+                    self.storage.child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg").downloadURL { (url, error) in
+                        if error != nil {
+                            print("Error when get url : \(String(describing: error?.localizedDescription))")
+                        }else{
+                            guard let url = url else {return}
+                            print("success when get url imageURL: \(url)")
+                            complation(url.absoluteString, nil)
+                    }
+                }
             }
         }
     }
 }
+
 

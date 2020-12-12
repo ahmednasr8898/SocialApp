@@ -22,7 +22,6 @@ class HomeViewController: UIViewController {
         setUpTableView()
         setUpMenu()
         getAllPosts()
-        getPostIDISSelected()
     }
     override func viewWillAppear(_ animated: Bool) {
         setUpNavigation()
@@ -64,6 +63,7 @@ extension HomeViewController: UITableViewDataSource{
         cell.userNameLabel.text = arrOfPosts[indexPath.row].postPublisher
         cell.getPhoto = arrOfPosts[indexPath.row]
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
+        cell.postID = arrOfPosts[indexPath.row].postID
         return cell
     }
 }
@@ -85,11 +85,6 @@ extension HomeViewController{
                 self.homeTableView.reloadData()
                 print(self.arrOfPosts)
             }
-        }
-    }
-    func getPostIDISSelected(){
-        ref.child("AllPosts").observe(.childAdded){ snap in
-            print(snap.key)
         }
     }
 }
