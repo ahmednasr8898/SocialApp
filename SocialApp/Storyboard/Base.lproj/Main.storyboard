@@ -396,7 +396,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UsM-xB-HiA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7657.0093457943922" y="50.53995680345573"/>
+            <point key="canvasLocation" x="7051" y="56"/>
+        </scene>
+        <!--Who Love Post View Controller-->
+        <scene sceneID="X6K-fu-CFY">
+            <objects>
+                <viewController storyboardIdentifier="WhoLovePostViewController" id="byN-RO-M1L" customClass="WhoLovePostViewController" customModule="SocialApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X0V-aE-oUt">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dg6-Mp-U75">
+                                <rect key="frame" x="0.0" y="44" width="428" height="848"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iNX-dR-WPe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Dg6-Mp-U75" firstAttribute="leading" secondItem="iNX-dR-WPe" secondAttribute="leading" id="5fm-at-aTU"/>
+                            <constraint firstItem="iNX-dR-WPe" firstAttribute="bottom" secondItem="Dg6-Mp-U75" secondAttribute="bottom" id="Dlc-6n-4AC"/>
+                            <constraint firstItem="iNX-dR-WPe" firstAttribute="trailing" secondItem="Dg6-Mp-U75" secondAttribute="trailing" id="aM1-eZ-fMx"/>
+                            <constraint firstItem="Dg6-Mp-U75" firstAttribute="top" secondItem="iNX-dR-WPe" secondAttribute="top" id="uTX-eV-vvt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="whoLovePostTableView" destination="Dg6-Mp-U75" id="Gcd-Ck-hVU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ST-zN-NPK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7780.3738317757006" y="55.723542116630675"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UUP-ld-IGl">

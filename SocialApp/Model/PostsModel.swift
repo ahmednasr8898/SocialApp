@@ -8,6 +8,7 @@ import Foundation
 struct PostsModel{
     var postID: String
     var postPublisher: String
+    var postPublisherProfile: String
     var bodyPost: String
     var imagePostL: String
     var love: Int

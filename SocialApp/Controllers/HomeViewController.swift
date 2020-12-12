@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     var menu: SideMenuNavigationController?
     var ref = Database.database().reference()
     var arrOfPosts = [PostsModel]()
-    
+    var postID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         checkCurrentUser()
@@ -58,13 +58,21 @@ extension HomeViewController: UITableViewDataSource{
         return arrOfPosts.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+       let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.descriptionPostLabel.text = arrOfPosts[indexPath.row].bodyPost
         cell.userNameLabel.text = arrOfPosts[indexPath.row].postPublisher
-        cell.getPhoto = arrOfPosts[indexPath.row]
+        cell.getPhotoImagePost = arrOfPosts[indexPath.row]
+        cell.getPhotoPostPublisherProfile = arrOfPosts[indexPath.row]
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
         cell.postID = arrOfPosts[indexPath.row].postID
+        cell.whoLovePostButton.addTarget(self, action: #selector(go), for: .touchUpInside)
+        postID = arrOfPosts[indexPath.row].postID
         return cell
+    }
+    @objc func go(){
+        let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
+        st.postID = postID
+        present(st, animated: true, completion: nil)
     }
 }
 extension HomeViewController: UITableViewDelegate{
@@ -79,8 +87,8 @@ extension HomeViewController{
     func getAllPosts(){
         ref.child("AllPosts").observe(.childAdded){ snap in
             if let value = snap.value as? [String: Any] {
-                guard let post = value["Post"] as? String, let postPublisher = value["PostPublisher"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int else{return}
-                let postModel = PostsModel(postID: snap.key, postPublisher: postPublisher, bodyPost: post, imagePostL: imagePost, love: love)
+                guard let post = value["Post"] as? String, let postPublisher = value["PostPublisher"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int, let postPublisherProfile = value["PostPublisherProfile"] as? String else{return}
+                let postModel = PostsModel(postID: snap.key, postPublisher: postPublisher, postPublisherProfile: postPublisherProfile, bodyPost: post, imagePostL: imagePost, love: love)
                 self.arrOfPosts.append(postModel)
                 self.homeTableView.reloadData()
                 print(self.arrOfPosts)

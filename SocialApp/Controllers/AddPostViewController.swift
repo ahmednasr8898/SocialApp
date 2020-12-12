@@ -87,20 +87,20 @@ extension AddPostViewController{
             }else{
                 guard let url = url else {return}
                 print("success when get url imageURL: \(url)")
-                self.getCurrentUserName(userID: userID) { (postPublisher) in
+                self.getCurrentUserName(userID: userID) { (postPublisher,profilePictuer)  in
                     print("Success in get current user name: \(postPublisher)")
-                    self.ref.child("AllPosts").child(postID).setValue(["Post": post, "PostPublisher": postPublisher, "imagePost": url, "Love": 0])
+                    self.ref.child("AllPosts").child(postID).setValue(["Post": post, "PostPublisher": postPublisher, "imagePost": url, "Love": 0, "PostPublisherProfile": profilePictuer])
                 }
             }
             self.dismiss(animated: true, completion: nil)
             print("add new post")
         }
     }
-    func getCurrentUserName(userID: String, complation: @escaping (_ name: String)-> Void){
+    func getCurrentUserName(userID: String, complation: @escaping (_ name: String,_ profilePicture: String)-> Void){
         ref.child("Users").child(userID).child("PersonalInformation").observeSingleEvent(of: .value) { (datasnap) in
             if let value = datasnap.value as? [String: Any] {
-                guard let name = value["name"] as? String else {return}
-                complation(name)
+                guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {return}
+                complation(name,profilePicture)
             }
         }
     }

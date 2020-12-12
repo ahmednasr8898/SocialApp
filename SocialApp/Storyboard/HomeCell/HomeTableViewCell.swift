@@ -18,6 +18,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var descriptionPostLabel: UILabel!
+    @IBOutlet weak var whoLovePostButton: UIButton!
     
     let ref = Database.database().reference()
     let storage = Storage.storage().reference()
@@ -41,13 +42,23 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    var getPhoto: PostsModel!{
+    var getPhotoImagePost: PostsModel!{
         didSet{
-            guard let photo = getPhoto else { return }
+            guard let photo = getPhotoImagePost else { return }
             //download photos using kingfisher
             self.postImageView.kf.indicatorType = .activity
             if let url = URL(string: photo.imagePostL){
                 self.postImageView.kf.setImage(with: url)
+            }
+        }
+    }
+    var getPhotoPostPublisherProfile: PostsModel!{
+        didSet{
+            guard let photo = getPhotoPostPublisherProfile else { return }
+            //download photos using kingfisher
+            self.userImageView.kf.indicatorType = .activity
+            if let url = URL(string: photo.postPublisherProfile){
+                self.userImageView.kf.setImage(with: url)
             }
         }
     }
@@ -98,12 +109,3 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
 }
-/*func getWhoLovePost(){
-    self.ref.child("AllPosts").child(self.postID!).child("WhoLovePost").observe(.childAdded){ snap in
-        print("Welcom back")
-        if let value = snap.value as? [String: Any]{
-            guard let name = value["Name"] as? String, let userID = value["UserID"] as? String, let profilePictrue = value["ProfilePicture"] as? String else {return}
-            let whoLovePost = WhoLovePost(UserID: userID, name: name, imagePicture: profilePictrue)
-        }
-    }
-}*/
