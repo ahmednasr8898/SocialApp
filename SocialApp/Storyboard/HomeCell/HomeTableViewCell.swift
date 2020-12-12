@@ -23,6 +23,7 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setUpDesign()
+        loveButton.addTarget(self, action: #selector(loveButtonPressed(sender:)), for: .touchUpInside)
     }
     func setUpDesign(){
         postUIView.backgroundColor = .white
@@ -44,6 +45,20 @@ class HomeTableViewCell: UITableViewCell {
             if let url = URL(string: photo.imagePostL){
                 self.postImageView.kf.setImage(with: url)
             }
+        }
+    }
+    @IBAction func loveButtonPressed(sender: UIButton){
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            //love is red
+            print("love")
+            sender.setImage(UIImage(named: "like"), for: .normal)
+            //MARK:- append 1 to love score in database
+        }else{
+            //love is white
+            print("un love")
+            sender.setImage(UIImage(named: "unlike"), for: .normal)
+            //MARK:- remove 1 to love score in database
         }
     }
 }

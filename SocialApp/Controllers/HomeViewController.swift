@@ -64,22 +64,7 @@ extension HomeViewController: UITableViewDataSource{
         cell.userNameLabel.text = arrOfPosts[indexPath.row].postPublisher
         cell.getPhoto = arrOfPosts[indexPath.row]
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
-        cell.loveButton.addTarget(self, action: #selector(loveButtonPressed(sender:)), for: .touchUpInside)
         return cell
-    }
-    @IBAction func loveButtonPressed(sender: UIButton){
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected{
-            //love is red
-            print("love")
-            sender.setImage(UIImage(named: "like"), for: .normal)
-            //MARK:- append 1 to love score in database
-        }else{
-            //love is white
-            print("un love")
-            sender.setImage(UIImage(named: "unlike"), for: .normal)
-            //MARK:- remove 1 to love score in database
-        }
     }
 }
 extension HomeViewController: UITableViewDelegate{
