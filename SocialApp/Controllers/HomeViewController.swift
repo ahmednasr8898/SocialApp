@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
     var ref = Database.database().reference()
     var arrOfPosts = [PostsModel]()
     var postID: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkCurrentUser()
@@ -67,6 +68,13 @@ extension HomeViewController: UITableViewDataSource{
         cell.postID = arrOfPosts[indexPath.row].postID
         cell.whoLovePostButton.addTarget(self, action: #selector(gotoWhoLovepostPage), for: .touchUpInside)
         postID = arrOfPosts[indexPath.row].postID
+        
+        for person in self.arrOfPosts[indexPath.row].whoLovePost{
+            if person == Auth.auth().currentUser?.uid{
+                cell.loveButton.isSelected = true
+                cell.loveButton.setImage(UIImage(named: "like"), for: .normal)
+            }
+        }
         return cell
     }
     @objc func gotoWhoLovepostPage(){
@@ -87,11 +95,23 @@ extension HomeViewController{
     func getAllPosts(){
         ref.child("AllPosts").observe(.childAdded){ snap in
             if let value = snap.value as? [String: Any] {
+                let posts = PostsModel()
                 guard let post = value["Post"] as? String, let postPublisher = value["PostPublisher"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int, let postPublisherProfile = value["PostPublisherProfile"] as? String else{return}
-                let postModel = PostsModel(postID: snap.key, postPublisher: postPublisher, postPublisherProfile: postPublisherProfile, bodyPost: post, imagePostL: imagePost, love: love)
-                self.arrOfPosts.append(postModel)
-                self.homeTableView.reloadData()
+                posts.postID = snap.key
+                posts.postPublisher = postPublisher
+                posts.postPublisherProfile = postPublisherProfile
+                posts.bodyPost = post
+                posts.imagePost = imagePost
+                posts.love = love
+                if let whoLovePost = value["WhoLovePost"] as? [String: Any]{
+                    for (key,_) in whoLovePost{
+                        print(key)
+                        posts.whoLovePost.append(key)
+                    }
+                }
+                self.arrOfPosts.append(posts)
                 print(self.arrOfPosts)
+                self.homeTableView.reloadData()
             }
         }
     }

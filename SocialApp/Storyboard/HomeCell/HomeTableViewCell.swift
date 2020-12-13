@@ -49,7 +49,7 @@ class HomeTableViewCell: UITableViewCell {
             guard let photo = getPhotoImagePost else { return }
             //download photos using kingfisher
             self.postImageView.kf.indicatorType = .activity
-            if let url = URL(string: photo.imagePostL){
+            if let url = URL(string: photo.imagePost){
                 self.postImageView.kf.setImage(with: url)
             }
         }
