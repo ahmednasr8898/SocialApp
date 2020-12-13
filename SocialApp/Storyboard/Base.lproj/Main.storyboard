@@ -604,6 +604,7 @@
                         <outlet property="changeProfileButton" destination="9V3-Jv-hKp" id="znz-YT-WTu"/>
                         <outlet property="personalImageView" destination="cEH-jN-ja8" id="aWs-3a-aTF"/>
                         <outlet property="profileImageView" destination="xC2-MY-6gu" id="LC9-vF-rAE"/>
+                        <outlet property="userNameLabel" destination="k6g-y9-7sM" id="8Xh-4Z-XqX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ruN-4O-id9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -101,6 +101,14 @@ class SignUpViewController: UIViewController {
                         self.ref.child("Users").child(userID).child("PersonalInformation").child("ProfilePicture").setValue(url)
                     }
                 }
+                //save cover picture
+                self.uplaodCoverPicture(userID: userID) { (url, string) in
+                    if error != nil{
+                        print("error when upload cover picture \(String(describing: error?.localizedDescription))")
+                    }else{
+                        self.ref.child("Users").child(userID).child("PersonalInformation").child("CoverPicture").setValue(url)
+                    }
+                }
                 //go to home page
                 self.navigationController?.popToRootViewController(animated: true)
             }else{
@@ -133,6 +141,28 @@ extension SignUpViewController{
                     complation(nil,error)
                 }else{
                     self.storage.child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg").downloadURL { (url, error) in
+                        if error != nil {
+                            print("Error when get url : \(String(describing: error?.localizedDescription))")
+                        }else{
+                            guard let url = url else {return}
+                            print("success when get url imageURL: \(url)")
+                            complation(url.absoluteString, nil)
+                    }
+                }
+            }
+        }
+    }
+    func uplaodCoverPicture(userID: String, complation: @escaping(_ url: String?, _ error: Error?)->Void){
+        guard let profilePicture = UIImage(named: "profile")?.jpegData(compressionQuality: 0.5) else{
+            self.view.makeToast("happend probelm")
+            return
+        }
+        storage.child("ProfilePicture").child(userID).child("MyCoverPicture.jpeg")
+            .putData(profilePicture, metadata: nil) { (_, error) in
+                if error != nil{
+                    complation(nil,error)
+                }else{
+                    self.storage.child("ProfilePicture").child(userID).child("MyCoverPicture.jpeg").downloadURL { (url, error) in
                         if error != nil {
                             print("Error when get url : \(String(describing: error?.localizedDescription))")
                         }else{
