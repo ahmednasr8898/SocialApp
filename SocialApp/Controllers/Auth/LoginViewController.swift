@@ -96,5 +96,31 @@ class LoginViewController: UIViewController {
         }
         return true
     }
+    @IBAction func forgetPasswordOnClick(_ sender: UIButton) {
+        let alert = UIAlertController(title: "rest password", message: "send email for change password", preferredStyle: .alert)
+        alert.addTextField { (txt) in
+            txt.placeholder = "enter your email"
+        }
+        let cancelButton = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
+        let sendButton = UIAlertAction(title: "send", style: .default) { (_) in
+            //rest passsowrd
+            guard let email = alert.textFields?[0].text, !email.isEmpty else {return}
+            self.resetPassword(email: email)
+        }
+        alert.addAction(cancelButton)
+        alert.addAction(sendButton)
+        self.present(alert, animated: true, completion: nil)
+    }
+    func resetPassword(email: String){
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if error == nil{
+                print("send email to reset password")
+                self.view.makeToast("send email to reset password")
+            }else{
+                print("error happend enter correct email")
+                self.view.makeToast("error happend enter correct email")
+            }
+        }
+    }
 }
 

@@ -12,6 +12,9 @@
 		791C661B257F243900695501 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791C661A257F243900695501 /* Menu.storyboard */; };
 		791C661F257F2B1000695501 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791C661D257F2B1000695501 /* MenuTableViewCell.swift */; };
 		791C6620257F2B1000695501 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791C661E257F2B1000695501 /* MenuTableViewCell.xib */; };
+		7977514A2585D90E00F041FD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797751492585D90E00F041FD /* SettingsViewController.swift */; };
+		7977514D2585EC0B00F041FD /* ChangeInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977514C2585EC0B00F041FD /* ChangeInfoViewController.swift */; };
+		797751502585EEDE00F041FD /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7977514F2585EEDE00F041FD /* ChangePasswordViewController.swift */; };
 		7978A283257B257900650E9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A282257B257900650E9A /* AppDelegate.swift */; };
 		7978A285257B257900650E9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A284257B257900650E9A /* SceneDelegate.swift */; };
 		7978A287257B257900650E9A /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7978A286257B257900650E9A /* AuthViewController.swift */; };
@@ -45,6 +48,9 @@
 		791C661A257F243900695501 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		791C661D257F2B1000695501 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		791C661E257F2B1000695501 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		797751492585D90E00F041FD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		7977514C2585EC0B00F041FD /* ChangeInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeInfoViewController.swift; sourceTree = "<group>"; };
+		7977514F2585EEDE00F041FD /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		7978A27F257B257900650E9A /* SocialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7978A282257B257900650E9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7978A284257B257900650E9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +122,39 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		797751442585D6CA00F041FD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7978A286257B257900650E9A /* AuthViewController.swift */,
+				799D84AE257B3D250057F6F1 /* LoginViewController.swift */,
+				79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		797751452585D6D700F041FD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				79D57BEF257DC32E003EA0F6 /* HomeCell */,
+				79CDB4EB258483FC005C355B /* WhoLovePost */,
+				791C6608257F22F100695501 /* Menu */,
+				79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */,
+				79D57BE9257DC205003EA0F6 /* HomeViewController.swift */,
+				79CDB4E425847449005C355B /* WhoLovePostViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		797751462585D6FF00F041FD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				797751492585D90E00F041FD /* SettingsViewController.swift */,
+				7977514C2585EC0B00F041FD /* ChangeInfoViewController.swift */,
+				7977514F2585EEDE00F041FD /* ChangePasswordViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		7978A276257B257900650E9A = {
 			isa = PBXGroup;
 			children = (
@@ -152,12 +191,9 @@
 		7978A298257B314F00650E9A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7978A286257B257900650E9A /* AuthViewController.swift */,
-				799D84AE257B3D250057F6F1 /* LoginViewController.swift */,
-				79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */,
-				79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */,
-				79D57BE9257DC205003EA0F6 /* HomeViewController.swift */,
-				79CDB4E425847449005C355B /* WhoLovePostViewController.swift */,
+				797751442585D6CA00F041FD /* Auth */,
+				797751452585D6D700F041FD /* Home */,
+				797751462585D6FF00F041FD /* Settings */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -194,9 +230,6 @@
 		7978A2AF257B373C00650E9A /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				79CDB4EB258483FC005C355B /* WhoLovePost */,
-				791C6608257F22F100695501 /* Menu */,
-				79D57BEF257DC32E003EA0F6 /* HomeCell */,
 				7978A288257B257900650E9A /* Main.storyboard */,
 				7978A28D257B259F00650E9A /* LaunchScreen.storyboard */,
 			);
@@ -394,10 +427,12 @@
 				7978A29B257B318B00650E9A /* UILabel+Extension.swift in Sources */,
 				798FB309258176BE00DD4A5D /* PostsModel.swift in Sources */,
 				7978A283257B257900650E9A /* AppDelegate.swift in Sources */,
+				797751502585EEDE00F041FD /* ChangePasswordViewController.swift in Sources */,
 				79AB88B8257C7CA00051D0EB /* SignUpViewController.swift in Sources */,
 				79CDB4E525847449005C355B /* WhoLovePostViewController.swift in Sources */,
 				799D84AB257B3BAE0057F6F1 /* UIViewContoller+Extension.swift in Sources */,
 				799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */,
+				7977514A2585D90E00F041FD /* SettingsViewController.swift in Sources */,
 				791C661F257F2B1000695501 /* MenuTableViewCell.swift in Sources */,
 				79CDB4E825847EA2005C355B /* WhoLovePostModel.swift in Sources */,
 				7978A2A3257B321100650E9A /* UIDevice+Extension.swift in Sources */,
@@ -405,6 +440,7 @@
 				79D57BE3257DB3B0003EA0F6 /* AddPostViewController.swift in Sources */,
 				79D57BEA257DC205003EA0F6 /* HomeViewController.swift in Sources */,
 				79CDB4EE25848425005C355B /* WhoLovePostTableViewCell.swift in Sources */,
+				7977514D2585EC0B00F041FD /* ChangeInfoViewController.swift in Sources */,
 				7978A2A8257B331C00650E9A /* CustomFontSizeLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

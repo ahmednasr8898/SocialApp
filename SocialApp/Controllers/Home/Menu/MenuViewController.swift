@@ -35,6 +35,7 @@ class MenuViewController: UITableViewController {
             print("go to profile page")
         }else if itemIndex == 1{
             print("go to settings page")
+            self.goToByPresent(storyboardName: "Main", viewControllerName: SettingsViewController.self, showAs: .automatic)
         }else if itemIndex == 2{
             self.sureLogOut()
         }
