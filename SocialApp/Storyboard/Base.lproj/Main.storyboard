@@ -516,6 +516,100 @@
             </objects>
             <point key="canvasLocation" x="6094" y="772"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="QLs-xY-9x0">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="hPI-Ip-Syz" customClass="ProfileViewController" customModule="SocialApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J9J-SN-Olc">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="xC2-MY-6gu">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="277.66666666666669"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ia-bk-oJ3">
+                                <rect key="frame" x="375.33333333333331" y="235.99999999999997" width="42.666666666666686" height="41.666666666666657"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9V3-Jv-hKp">
+                                        <rect key="frame" x="4" y="4" width="34.666666666666664" height="33.666666666666664"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="camera-to-take-photos"/>
+                                        <connections>
+                                            <action selector="changeProfileImageOnClick:" destination="hPI-Ip-Syz" eventType="touchUpInside" id="q56-hl-tyQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstItem="9V3-Jv-hKp" firstAttribute="top" secondItem="6ia-bk-oJ3" secondAttribute="top" constant="4" id="BlC-pV-aiN"/>
+                                    <constraint firstAttribute="trailing" secondItem="9V3-Jv-hKp" secondAttribute="trailing" constant="4" id="ofZ-zw-qaV"/>
+                                    <constraint firstAttribute="bottom" secondItem="9V3-Jv-hKp" secondAttribute="bottom" constant="4" id="sXU-yJ-UUl"/>
+                                    <constraint firstItem="9V3-Jv-hKp" firstAttribute="leading" secondItem="6ia-bk-oJ3" secondAttribute="leading" constant="4" id="vEP-8y-kuC"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="cEH-jN-ja8">
+                                <rect key="frame" x="94" y="204" width="240" height="231.66666666666663"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Tt-SP-lX6">
+                                <rect key="frame" x="120.00000000000001" y="380" width="42.666666666666671" height="46"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jp5-fr-Bpf">
+                                        <rect key="frame" x="4" y="4" width="34.666666666666664" height="38"/>
+                                        <state key="normal" image="camera-to-take-photos"/>
+                                        <connections>
+                                            <action selector="changePersonalImageOnCLick:" destination="hPI-Ip-Syz" eventType="touchUpInside" id="jxa-s2-Ndr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstItem="Jp5-fr-Bpf" firstAttribute="leading" secondItem="0Tt-SP-lX6" secondAttribute="leading" constant="4" id="2f2-Z0-bJa"/>
+                                    <constraint firstAttribute="trailing" secondItem="Jp5-fr-Bpf" secondAttribute="trailing" constant="4" id="72h-t0-l2R"/>
+                                    <constraint firstItem="Jp5-fr-Bpf" firstAttribute="top" secondItem="0Tt-SP-lX6" secondAttribute="top" constant="4" id="bB2-gz-8JX"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jp5-fr-Bpf" secondAttribute="bottom" constant="4" id="tOI-sI-fKY"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6g-y9-7sM">
+                                <rect key="frame" x="158.66666666666666" y="470.66666666666669" width="110.66666666666666" height="26.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DAE-Va-WUn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0Tt-SP-lX6" firstAttribute="leading" secondItem="DAE-Va-WUn" secondAttribute="leading" constant="120" id="5yP-LA-LFr"/>
+                            <constraint firstItem="xC2-MY-6gu" firstAttribute="top" secondItem="J9J-SN-Olc" secondAttribute="top" id="7AE-nL-afo"/>
+                            <constraint firstItem="cEH-jN-ja8" firstAttribute="width" secondItem="J9J-SN-Olc" secondAttribute="width" multiplier="0.560748" id="7FL-SL-yOS"/>
+                            <constraint firstItem="0Tt-SP-lX6" firstAttribute="width" secondItem="J9J-SN-Olc" secondAttribute="width" multiplier="0.1" id="BJJ-WC-nGu"/>
+                            <constraint firstItem="6ia-bk-oJ3" firstAttribute="bottom" secondItem="xC2-MY-6gu" secondAttribute="bottom" id="DLu-xy-M7h"/>
+                            <constraint firstItem="xC2-MY-6gu" firstAttribute="leading" secondItem="DAE-Va-WUn" secondAttribute="leading" id="NFu-fG-eic"/>
+                            <constraint firstItem="6ia-bk-oJ3" firstAttribute="height" secondItem="xC2-MY-6gu" secondAttribute="height" multiplier="0.15" id="P6Q-mQ-HrJ"/>
+                            <constraint firstItem="cEH-jN-ja8" firstAttribute="top" secondItem="DAE-Va-WUn" secondAttribute="top" constant="160" id="QUl-rE-ppT"/>
+                            <constraint firstItem="xC2-MY-6gu" firstAttribute="trailing" secondItem="DAE-Va-WUn" secondAttribute="trailing" id="Ubw-ck-lpR"/>
+                            <constraint firstItem="k6g-y9-7sM" firstAttribute="top" secondItem="cEH-jN-ja8" secondAttribute="bottom" constant="35" id="aqV-Ir-F5C"/>
+                            <constraint firstItem="6ia-bk-oJ3" firstAttribute="top" secondItem="DAE-Va-WUn" secondAttribute="top" constant="192" id="dKk-hf-HzL"/>
+                            <constraint firstItem="DAE-Va-WUn" firstAttribute="trailing" secondItem="6ia-bk-oJ3" secondAttribute="trailing" constant="10" id="eHc-5o-O9Z"/>
+                            <constraint firstItem="0Tt-SP-lX6" firstAttribute="height" secondItem="J9J-SN-Olc" secondAttribute="height" multiplier="0.05" id="fKE-dZ-aWz"/>
+                            <constraint firstItem="cEH-jN-ja8" firstAttribute="centerX" secondItem="J9J-SN-Olc" secondAttribute="centerX" id="hpH-oo-ji3"/>
+                            <constraint firstItem="6ia-bk-oJ3" firstAttribute="width" secondItem="xC2-MY-6gu" secondAttribute="width" multiplier="0.1" id="j5b-Sq-0xG"/>
+                            <constraint firstItem="cEH-jN-ja8" firstAttribute="height" secondItem="J9J-SN-Olc" secondAttribute="height" multiplier="0.25" id="lg9-c9-W2l"/>
+                            <constraint firstItem="k6g-y9-7sM" firstAttribute="centerX" secondItem="J9J-SN-Olc" secondAttribute="centerX" id="loS-Yf-hBr"/>
+                            <constraint firstItem="0Tt-SP-lX6" firstAttribute="centerY" secondItem="J9J-SN-Olc" secondAttribute="centerY" constant="-60" id="oWQ-NW-CZv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="changePersonalButton" destination="Jp5-fr-Bpf" id="7oT-EQ-uJ0"/>
+                        <outlet property="changeProfileButton" destination="9V3-Jv-hKp" id="znz-YT-WTu"/>
+                        <outlet property="personalImageView" destination="cEH-jN-ja8" id="aWs-3a-aTF"/>
+                        <outlet property="profileImageView" destination="xC2-MY-6gu" id="LC9-vF-rAE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ruN-4O-id9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6815.8878504672894" y="771.70626349892018"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="QSz-2v-jQz">
             <objects>
@@ -696,10 +790,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera-to-take-photos" width="512" height="512"/>
         <image name="delete.left.fill" catalog="system" width="128" height="104"/>
         <image name="firebase" width="48" height="48"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="picture" width="512" height="512"/>
+        <image name="profile" width="1524" height="976"/>
+        <image name="user" width="512" height="512"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -711,6 +808,12 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
