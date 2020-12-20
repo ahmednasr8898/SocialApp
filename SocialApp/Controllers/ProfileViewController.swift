@@ -8,6 +8,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
+import Toast_Swift
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -74,6 +75,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 print("faild in update image")
             }else{
                 print("update image is success")
+                self.view.makeToast("update Profile Picture is success")
                 Storage.storage().reference().child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg").downloadURL { (url, error) in
                     if error != nil {
                         print("Error when get url : \(String(describing: error?.localizedDescription))")
@@ -92,7 +94,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             if error != nil{
                 print("faild in update image")
             }else{
-                print("update image is success")
+                self.view.makeToast("update cover Picture is success")
                 Storage.storage().reference().child("ProfilePicture").child(userID).child("MyCoverPicture.jpeg").downloadURL { (url, error) in
                     if error != nil {
                         print("Error when get url : \(String(describing: error?.localizedDescription))")

@@ -92,7 +92,6 @@ class SignUpViewController: UIViewController {
                 //create new user
                 self.createNewUser(userID: userID, name: name!, email: email!, phone: phone!)
                 //save profile picture
-                //save profile picture
                 self.uplaodProfilePicture(userID: userID) { (url, error) in
                     if error != nil{
                         print("error when upload profile picture \(String(describing: error?.localizedDescription))")
@@ -144,7 +143,7 @@ extension SignUpViewController{
                             print("Error when get url : \(String(describing: error?.localizedDescription))")
                         }else{
                             guard let url = url else {return}
-                            print("success when get url imageURL: \(url)")
+                            print("success when get url imageURL")
                             complation(url.absoluteString, nil)
                     }
                 }
@@ -166,7 +165,7 @@ extension SignUpViewController{
                             print("Error when get url : \(String(describing: error?.localizedDescription))")
                         }else{
                             guard let url = url else {return}
-                            print("success when get url imageURL: \(url)")
+                            print("success when get url imageURL")
                             complation(url.absoluteString, nil)
                     }
                 }

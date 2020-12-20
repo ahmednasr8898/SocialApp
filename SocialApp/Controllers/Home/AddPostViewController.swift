@@ -53,7 +53,13 @@ class AddPostViewController: UIViewController {
     @IBAction func uploadPostOnClick(_ sender: UIButton) {
         if checkValid(){
             //upload post
-            uploadPost()
+            uploadPost { (isSuccess) in
+                if isSuccess{
+                    self.hideIndicator()
+                    self.dismiss(animated: true, completion: nil)
+                    print("add new post")
+                }
+            }
         }else{
             self.view.makeToast("faild in upload post")
             print("faild in upload post")
@@ -78,19 +84,20 @@ extension AddPostViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 extension AddPostViewController{
-    func uploadPost(){
+    func uploadPost(completion: @escaping (Bool)->()){
+        self.showIndicator(withTitle: "Uploading Your Post", and: "")
         guard let postID = ref.childByAutoId().key, let post = messegPostTextView.text, !post.isEmpty, let userID =
                 Auth.auth().currentUser?.uid, let imagePost = imageViewPost.image, let imagePostData = imagePost.jpegData(compressionQuality: 0.5)   else {return}
         self.uplaodImagePost(postID: postID, imagePostData: imagePostData) { (url, error) in
             if error != nil {
                 print("fiald in upload image post")
+                completion(false)
             }else{
                 guard let url = url else {return}
                 print("success when get url imageURL")
                 self.ref.child("AllPosts").child(postID).setValue(["Post": post, "imagePost": url, "Love": 0, "UserID": userID])
+               completion(true)
             }
-            self.dismiss(animated: true, completion: nil)
-            print("add new post")
         }
     }
     func uplaodImagePost(postID: String, imagePostData: Data, complation: @escaping(_ url: String?, _ error: Error?)->Void){
