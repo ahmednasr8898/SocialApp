@@ -11,8 +11,6 @@ import FirebaseStorage
 import FirebaseAuth
 class HomeTableViewCell: UITableViewCell {
     
-    //MARK:- check if current user love post (love button is red and in selected mode)
-    
     @IBOutlet weak var postUIView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var loveButton: UIButton!
@@ -55,37 +53,36 @@ class HomeTableViewCell: UITableViewCell {
             }
         }
     }
-    var getPhotoPostPublisherProfile: PostsModel!{
-        didSet{
-            guard let photo = getPhotoPostPublisherProfile else { return }
-            //download photos using kingfisher
-            self.userImageView.kf.indicatorType = .activity
-            if let url = URL(string: photo.postPublisherProfile){
-                self.userImageView.kf.setImage(with: url)
-            }
-        }
-    }
     @IBAction func loveButtonPressed(sender: UIButton){
         sender.isSelected = !sender.isSelected
         if sender.isSelected{
             //love is red
             sender.setImage(UIImage(named: "like"), for: .normal)
             //append 1 to love score in database and labelLove
-            guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
-            getCurrentUserInformation { (name, profilePictureUrl) in
-                self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(Auth.auth().currentUser!.uid).setValue(["UserID": userID, "Name": name, "profilePicture": profilePictureUrl])
+            guard let postID = postID, let userID = Auth.auth().currentUser?.uid, let personLikePostID = ref.childByAutoId().key else {return}
+            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(personLikePostID).setValue(userID)
                 self.getNumberOfLove { (countOfLove) in
                     let newCount = countOfLove + 1
                     self.numOfLoveLabel.text = String(newCount)
                     self.ref.child("AllPosts").child(postID).updateChildValues(["Love": newCount])
                 }
-            }
         }else{
             //love is white
             sender.setImage(UIImage(named: "unlike"), for: .normal)
             //remove 1 to love score in database and labelLove
             guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
-            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(userID).removeValue()
+            
+            ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnap) in
+                if let value = dataSnap.value as? [String: Any]{
+                    guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
+                    
+                    for (id,val) in whoLovePost{
+                        if val as? String == userID{
+                            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(id).removeValue()
+                        }
+                    }
+                }
+            }
             self.getNumberOfLove { (countOfLove) in
                 let newCount = countOfLove - 1
                 self.numOfLoveLabel.text = String(newCount)
@@ -104,7 +101,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     func getCurrentUserInformation(complation: @escaping (_ name: String,_ profilePictureUrl: String)-> Void){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        ref.child("Users").child(userID).child("PersonalInformation").observeSingleEvent(of: .value) { (datasnap) in
+        ref.child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
             if let value = datasnap.value as? [String: Any] {
                 guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {return}
                 complation(name, profilePicture)
@@ -125,3 +122,4 @@ class HomeTableViewCell: UITableViewCell {
         }
     }
 }
+

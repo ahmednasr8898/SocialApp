@@ -12,12 +12,16 @@ class WhoLovePostViewController: UIViewController {
 
     @IBOutlet weak var whoLovePostTableView: UITableView!
     let ref = Database.database().reference()
-    var arrOfWhoLovePost = [WhoLovePostModel]()
-    var postID: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabelView()
-        getWhoLovePost()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(listenForNotification(notification:)), name: NSNotification.Name(rawValue: "SendData"), object: nil)
+    }
+    @objc func listenForNotification(notification: Notification){
+        if let data = notification.object as? String{
+            print("data",data)
+        }
     }
     func setUpTabelView(){
         whoLovePostTableView.register(UINib(nibName: "WhoLovePostTableViewCell", bundle: nil), forCellReuseIdentifier: "WhoLovePostTableViewCell")
@@ -27,27 +31,14 @@ class WhoLovePostViewController: UIViewController {
 }
 extension WhoLovePostViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrOfWhoLovePost.count
+        return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WhoLovePostTableViewCell", for: indexPath) as! WhoLovePostTableViewCell
-        cell.userNameLabel.text = arrOfWhoLovePost[indexPath.row].name
-        cell.getPhoto = arrOfWhoLovePost[indexPath.row]
-    
-        
+        /*cell.userNameLabel.text = arrOfWhoLovePost[indexPath.row].name
+        cell.getPhoto = arrOfWhoLovePost[indexPath.row]*/
+        cell.userNameLabel.text = "Hello, User Love post"
         return cell
-    }
-}
-extension WhoLovePostViewController{
-    func getWhoLovePost(){
-        self.ref.child("AllPosts").child(self.postID!).child("WhoLovePost").observe(.childAdded){ snap in
-            if let value = snap.value as? [String: Any]{
-                guard let name = value["Name"] as? String, let userID = value["UserID"] as? String, let profilePictrue = value["profilePicture"] as? String else {return}
-                let whoLovePost = WhoLovePostModel(UserID: userID, name: name, profilePicture: profilePictrue)
-                self.arrOfWhoLovePost.append(whoLovePost)
-                self.whoLovePostTableView.reloadData()
-            }
-        }
     }
 }
 extension WhoLovePostViewController: UITableViewDelegate{

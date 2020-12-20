@@ -98,7 +98,7 @@ class SignUpViewController: UIViewController {
                     if error != nil{
                         print("error when upload profile picture \(String(describing: error?.localizedDescription))")
                     }else{
-                        self.ref.child("Users").child(userID).child("PersonalInformation").child("ProfilePicture").setValue(url)
+                        self.ref.child("Users").child(userID).child("ProfilePicture").setValue(url)
                     }
                 }
                 //save cover picture
@@ -106,7 +106,7 @@ class SignUpViewController: UIViewController {
                     if error != nil{
                         print("error when upload cover picture \(String(describing: error?.localizedDescription))")
                     }else{
-                        self.ref.child("Users").child(userID).child("PersonalInformation").child("CoverPicture").setValue(url)
+                        self.ref.child("Users").child(userID).child("CoverPicture").setValue(url)
                     }
                 }
                 //go to home page
@@ -128,7 +128,7 @@ class SignUpViewController: UIViewController {
 }
 extension SignUpViewController{
     func createNewUser(userID: String, name: String, email: String, phone: String){
-        ref.child("Users").child(userID).child("PersonalInformation").setValue(["name": name, "email": email, "phone": phone])
+        ref.child("Users").child(userID).setValue(["name": name, "email": email, "phone": phone])
     }
     func uplaodProfilePicture(userID: String, complation: @escaping(_ url: String?, _ error: Error?)->Void){
         guard let profilePicture = UIImage(named: "user")?.jpegData(compressionQuality: 0.5) else{

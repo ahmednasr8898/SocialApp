@@ -9,13 +9,14 @@ import SideMenu
 import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
+import Kingfisher
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var homeTableView: UITableView!
     var menu: SideMenuNavigationController?
     var ref = Database.database().reference()
     var arrOfPosts = [PostsModel]()
-    var postID: String?
+    var arrOfUser = [UserModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class HomeViewController: UIViewController {
         setUpMenu()
         getAllPosts()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         setUpNavigation()
     }
@@ -61,13 +63,29 @@ extension HomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.descriptionPostLabel.text = arrOfPosts[indexPath.row].bodyPost
-        cell.userNameLabel.text = arrOfPosts[indexPath.row].postPublisher
+        self.ref.child("Users").child(arrOfPosts[indexPath.row].userID).observe(.value) { (dataSnap) in
+            if let value = dataSnap.value as? [String: Any]{
+                guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {
+                    return
+                }
+                cell.userNameLabel.text = name
+                cell.userImageView.kf.indicatorType = .activity
+                if let url = URL(string: profilePicture){
+                    cell.userImageView.kf.setImage(with: url)
+                }
+              
+            }else{
+                print("Helo")
+            }
+        }
         cell.getPhotoImagePost = arrOfPosts[indexPath.row]
-        cell.getPhotoPostPublisherProfile = arrOfPosts[indexPath.row]
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
         cell.postID = arrOfPosts[indexPath.row].postID
         cell.whoLovePostButton.addTarget(self, action: #selector(gotoWhoLovepostPage), for: .touchUpInside)
-        postID = arrOfPosts[indexPath.row].postID
+        let postId = arrOfPosts[indexPath.row].postID
+        
+        NotificationCenter.default.post(name: Notification.Name("SendData"), object: postId)
+        
         
         for person in self.arrOfPosts[indexPath.row].whoLovePost{
             if person == Auth.auth().currentUser?.uid{
@@ -79,7 +97,6 @@ extension HomeViewController: UITableViewDataSource{
     }
     @objc func gotoWhoLovepostPage(){
         let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
-        st.postID = postID
         present(st, animated: true, completion: nil)
     }
 }
@@ -96,17 +113,16 @@ extension HomeViewController{
         ref.child("AllPosts").observe(.childAdded){ snap in
             if let value = snap.value as? [String: Any] {
                 let posts = PostsModel()
-                guard let post = value["Post"] as? String, let postPublisher = value["PostPublisher"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int, let postPublisherProfile = value["PostPublisherProfile"] as? String else{return}
+                guard let post = value["Post"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int, let userID = value["UserID"] as? String else{return}
                 posts.postID = snap.key
-                posts.postPublisher = postPublisher
-                posts.postPublisherProfile = postPublisherProfile
                 posts.bodyPost = post
                 posts.imagePost = imagePost
                 posts.love = love
+                posts.userID = userID
                 if let whoLovePost = value["WhoLovePost"] as? [String: Any]{
-                    for (key,_) in whoLovePost{
-                        print(key)
-                        posts.whoLovePost.append(key)
+                    for (_,key) in whoLovePost{
+                        print("KEy",key)
+                        posts.whoLovePost.append(key as! String)
                     }
                 }
                 self.arrOfPosts.append(posts)

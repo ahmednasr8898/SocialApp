@@ -14,8 +14,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var personalImageView: UIImageView!
     @IBOutlet weak var changeProfileButton: UIButton!
     @IBOutlet weak var changePersonalButton: UIButton!
-    
     @IBOutlet weak var userNameLabel: UILabel!
+    
     var isProfile = false
     var isPersonal = false
     
@@ -80,7 +80,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                     }else{
                         guard let url = url else {return}
                         print("success when get url imageURL: \(url)")
-                        Database.database().reference().child("Users").child(userID).child("PersonalInformation").updateChildValues(["ProfilePicture": url.absoluteString])
+                        Database.database().reference().child("Users").child(userID).updateChildValues(["ProfilePicture": url.absoluteString])
                     }
                 }
             }
@@ -99,7 +99,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                     }else{
                         guard let url = url else {return}
                         print("success when get url imageURL: \(url)")
-                        Database.database().reference().child("Users").child(userID).child("PersonalInformation").updateChildValues(["CoverPicture": url.absoluteString])
+                        Database.database().reference().child("Users").child(userID).updateChildValues(["CoverPicture": url.absoluteString])
                     }
                 }
             }
@@ -133,7 +133,7 @@ extension ProfileViewController{
     }
     func getCurrentUserInformation(){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("Users").child(userID).child("PersonalInformation").observeSingleEvent(of: .value) { (datasnap) in
+        Database.database().reference().child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
             if let value = datasnap.value as? [String: Any] {
                 guard let name = value["name"] as? String else {return}
                 self.userNameLabel.text = name

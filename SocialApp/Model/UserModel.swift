@@ -6,9 +6,14 @@
 //
 
 import Foundation
-struct UserModel {
-    var name: String
-    var phone: String
-    var profilePicture: String
-    var email: String
+class UserModel {
+    var name: String = ""
+    var phone: String = ""
+    var profilePicture: String = ""
+    var email: String = ""
+    
+    init(name: String, profilePicture: String) {
+        self.name = name
+        self.profilePicture = profilePicture
+    }
 }

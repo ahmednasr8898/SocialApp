@@ -47,6 +47,7 @@ class MenuViewController: UITableViewController {
         do {
             try firebaseAuth.signOut()
             self.hideIndicator()
+            //dismiss(animated: true, completion: nil)
             self.goToByNavigate(storyboardName: "Main", viewControllerName: AuthViewController.self)
         }catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)

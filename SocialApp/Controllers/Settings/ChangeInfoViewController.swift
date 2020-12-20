@@ -44,7 +44,7 @@ class ChangeInfoViewController: UIViewController {
     }
     func getCurrentUserInformation(){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        ref.child("Users").child(userID).child("PersonalInformation").observeSingleEvent(of: .value) { (datasnap) in
+        ref.child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
             if let value = datasnap.value as? [String: Any] {
                 guard let name = value["name"] as? String, let phone = value["phone"] as? String else {return}
                 self.nameTextField.text = name
@@ -54,7 +54,7 @@ class ChangeInfoViewController: UIViewController {
     }
     func changeInfo(name: String, phone: String){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        ref.child("Users").child(userID).child("PersonalInformation").updateChildValues(["name": name, "phone": phone])
+        ref.child("Users").child(userID).updateChildValues(["name": name, "phone": phone])
         self.view.makeToast("Update Success")
     }
 }
