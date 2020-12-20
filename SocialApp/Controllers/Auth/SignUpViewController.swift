@@ -17,7 +17,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confiremPasswordTextField: UITextField!
     @IBOutlet weak var createAccountButton: UIButton!
-    
     @IBOutlet weak var topNameConstriant: NSLayoutConstraint!
     @IBOutlet weak var topEmailConstriant: NSLayoutConstraint!
     @IBOutlet weak var topPhoneConstriant: NSLayoutConstraint!

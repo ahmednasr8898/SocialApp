@@ -13,7 +13,6 @@ class AddPostViewController: UIViewController {
     
     @IBOutlet weak var messegPostTextView: UITextView!
     @IBOutlet weak var imageViewPost: UIImageView!
-    
     @IBOutlet weak var descriptionView: UIView!
     @IBOutlet weak var topPostConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightPostConstraint: NSLayoutConstraint!
@@ -23,6 +22,7 @@ class AddPostViewController: UIViewController {
     
     let ref = Database.database().reference()
     let storage = Storage.storage().reference()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpConstarint()
@@ -52,7 +52,7 @@ class AddPostViewController: UIViewController {
     }
     @IBAction func uploadPostOnClick(_ sender: UIButton) {
         if checkValid(){
-          //upload post
+            //upload post
             uploadPost()
         }else{
             self.view.makeToast("faild in upload post")
@@ -86,22 +86,11 @@ extension AddPostViewController{
                 print("fiald in upload image post")
             }else{
                 guard let url = url else {return}
-                print("success when get url imageURL: \(url)")
-                self.getCurrentUserName(userID: userID) { (postPublisher,profilePictuer)  in
-                    print("Success in get current user name: \(postPublisher)")
-                    self.ref.child("AllPosts").child(postID).setValue(["Post": post, "imagePost": url, "Love": 0, "UserID": userID])
-                }
+                print("success when get url imageURL")
+                self.ref.child("AllPosts").child(postID).setValue(["Post": post, "imagePost": url, "Love": 0, "UserID": userID])
             }
             self.dismiss(animated: true, completion: nil)
             print("add new post")
-        }
-    }
-    func getCurrentUserName(userID: String, complation: @escaping (_ name: String,_ profilePicture: String)-> Void){
-        ref.child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
-            if let value = datasnap.value as? [String: Any] {
-                guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {return}
-                complation(name,profilePicture)
-            }
         }
     }
     func uplaodImagePost(postID: String, imagePostData: Data, complation: @escaping(_ url: String?, _ error: Error?)->Void){
@@ -110,13 +99,12 @@ extension AddPostViewController{
                 complation(nil,error)
             }else{
                 print("success in upload image post")
-                print("metaData: ",metadata as Any)
                 self.storage.child("ImagePosts").child(postID).downloadURL { (url, error) in
                     if error != nil {
                         print("Error when get url : \(String(describing: error?.localizedDescription))")
                     }else{
                         guard let url = url else {return}
-                        print("success when get url imageURL: \(url)")
+                        print("success when get url imageURL")
                         complation(url.absoluteString, nil)
                     }
                 }

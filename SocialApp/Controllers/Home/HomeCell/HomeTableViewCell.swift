@@ -39,10 +39,6 @@ class HomeTableViewCell: UITableViewCell {
         postUIView.layer.shadowOpacity = 0.7
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
     var getPhotoImagePost: PostsModel!{
         didSet{
             guard let photo = getPhotoImagePost else { return }
@@ -96,28 +92,6 @@ class HomeTableViewCell: UITableViewCell {
             if let value = dataSnapshot.value as? [String: Any]{
                 guard let numOfLove = value["Love"] as? Int else {return}
                 comlation(numOfLove)
-            }
-        }
-    }
-    func getCurrentUserInformation(complation: @escaping (_ name: String,_ profilePictureUrl: String)-> Void){
-        guard let userID = Auth.auth().currentUser?.uid else {return}
-        ref.child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
-            if let value = datasnap.value as? [String: Any] {
-                guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {return}
-                complation(name, profilePicture)
-            }
-        }
-    }
-    func checkCurrentUserLovePost(complation: @escaping (_ found: Bool)->Void){
-        self.ref.child("AllPosts").child(self.postID!).child("WhoLovePost").observe(.childAdded){ snap in
-            if let value = snap.value as? [String: Any]{
-                guard let userID = value["UserID"] as? String, let currentUserID = Auth.auth().currentUser?.uid else {return}
-                if currentUserID == userID{
-                    print("I foi=unded", userID)
-                    complation(true)
-                }else{
-                    complation(false)
-                }
             }
         }
     }

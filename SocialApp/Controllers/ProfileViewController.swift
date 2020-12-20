@@ -79,7 +79,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         print("Error when get url : \(String(describing: error?.localizedDescription))")
                     }else{
                         guard let url = url else {return}
-                        print("success when get url imageURL: \(url)")
+                        print("success when get url imageURL")
                         Database.database().reference().child("Users").child(userID).updateChildValues(["ProfilePicture": url.absoluteString])
                     }
                 }
@@ -98,7 +98,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                         print("Error when get url : \(String(describing: error?.localizedDescription))")
                     }else{
                         guard let url = url else {return}
-                        print("success when get url imageURL: \(url)")
+                        print("success when get url imageURL")
                         Database.database().reference().child("Users").child(userID).updateChildValues(["CoverPicture": url.absoluteString])
                     }
                 }

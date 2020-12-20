@@ -31,10 +31,8 @@
 		79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B4257C72470051D0EB /* UITextField+Extension.swift */; };
 		79AB88B8257C7CA00051D0EB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */; };
 		79CDB4E525847449005C355B /* WhoLovePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDB4E425847449005C355B /* WhoLovePostViewController.swift */; };
-		79CDB4E825847EA2005C355B /* WhoLovePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDB4E725847EA2005C355B /* WhoLovePostModel.swift */; };
 		79CDB4EE25848425005C355B /* WhoLovePostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDB4EC25848425005C355B /* WhoLovePostTableViewCell.swift */; };
 		79CDB4EF25848425005C355B /* WhoLovePostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79CDB4ED25848425005C355B /* WhoLovePostTableViewCell.xib */; };
-		79CDB4F325848EBF005C355B /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CDB4F225848EBF005C355B /* UserModel.swift */; };
 		79D57BE3257DB3B0003EA0F6 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */; };
 		79D57BE6257DB861003EA0F6 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE5257DB861003EA0F6 /* CustomUIView.swift */; };
 		79D57BEA257DC205003EA0F6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D57BE9257DC205003EA0F6 /* HomeViewController.swift */; };
@@ -70,10 +68,8 @@
 		79AB88B4257C72470051D0EB /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		79AB88B7257C7CA00051D0EB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		79CDB4E425847449005C355B /* WhoLovePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoLovePostViewController.swift; sourceTree = "<group>"; };
-		79CDB4E725847EA2005C355B /* WhoLovePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoLovePostModel.swift; sourceTree = "<group>"; };
 		79CDB4EC25848425005C355B /* WhoLovePostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoLovePostTableViewCell.swift; sourceTree = "<group>"; };
 		79CDB4ED25848425005C355B /* WhoLovePostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhoLovePostTableViewCell.xib; sourceTree = "<group>"; };
-		79CDB4F225848EBF005C355B /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		79D57BE5257DB861003EA0F6 /* CustomUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
 		79D57BE9257DC205003EA0F6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -178,8 +174,8 @@
 		7978A281257B257900650E9A /* SocialApp */ = {
 			isa = PBXGroup;
 			children = (
-				798FB3072581769800DD4A5D /* Model */,
 				7978A2AB257B371300650E9A /* Delegate */,
+				798FB3072581769800DD4A5D /* Model */,
 				7978A298257B314F00650E9A /* Controllers */,
 				7978A2AF257B373C00650E9A /* Storyboard */,
 				7978A2A6257B32FE00650E9A /* CustomUI */,
@@ -252,8 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				798FB308258176BE00DD4A5D /* PostsModel.swift */,
-				79CDB4E725847EA2005C355B /* WhoLovePostModel.swift */,
-				79CDB4F225848EBF005C355B /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -422,7 +416,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				79AB88B5257C72470051D0EB /* UITextField+Extension.swift in Sources */,
-				79CDB4F325848EBF005C355B /* UserModel.swift in Sources */,
 				791C6616257F23D800695501 /* MenuViewController.swift in Sources */,
 				79D57BE6257DB861003EA0F6 /* CustomUIView.swift in Sources */,
 				79D57BF2257DC344003EA0F6 /* HomeTableViewCell.swift in Sources */,
@@ -437,7 +430,6 @@
 				799D84AF257B3D250057F6F1 /* LoginViewController.swift in Sources */,
 				7977514A2585D90E00F041FD /* SettingsViewController.swift in Sources */,
 				791C661F257F2B1000695501 /* MenuTableViewCell.swift in Sources */,
-				79CDB4E825847EA2005C355B /* WhoLovePostModel.swift in Sources */,
 				7978A2A3257B321100650E9A /* UIDevice+Extension.swift in Sources */,
 				7978A285257B257900650E9A /* SceneDelegate.swift in Sources */,
 				79D57BE3257DB3B0003EA0F6 /* AddPostViewController.swift in Sources */,

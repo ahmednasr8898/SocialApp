@@ -14,7 +14,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var topEmailConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var topPasswordConstraint: NSLayoutConstraint!
     @IBOutlet weak var topLoginConstarint: NSLayoutConstraint!
     @IBOutlet weak var topORConstraint: NSLayoutConstraint!

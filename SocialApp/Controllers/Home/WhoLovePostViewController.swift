@@ -14,6 +14,7 @@ class WhoLovePostViewController: UIViewController {
     let ref = Database.database().reference()
     var postID: String?
     var arrOfID = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabelView()
@@ -44,8 +45,6 @@ extension WhoLovePostViewController: UITableViewDataSource{
                 if let url = URL(string: profilePicture){
                     cell.userImageView.kf.setImage(with: url)
                 }
-            }else{
-                print("Helo")
             }
         }
         return cell
@@ -63,9 +62,7 @@ extension WhoLovePostViewController{
             if let value = dataSnap.value as? [String: Any]{
                 guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
                 for (_,val) in whoLovePost{
-                    print(val)
                     self.arrOfID.append(val as! String)
-                    print(self.arrOfID)
                 }
             }
         }
