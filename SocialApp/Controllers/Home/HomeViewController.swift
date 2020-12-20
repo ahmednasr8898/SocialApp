@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     var ref = Database.database().reference()
     var arrOfPosts = [PostsModel]()
     var arrOfUser = [UserModel]()
-    
+    var postId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         checkCurrentUser()
@@ -81,11 +81,14 @@ extension HomeViewController: UITableViewDataSource{
         cell.getPhotoImagePost = arrOfPosts[indexPath.row]
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
         cell.postID = arrOfPosts[indexPath.row].postID
-        cell.whoLovePostButton.addTarget(self, action: #selector(gotoWhoLovepostPage), for: .touchUpInside)
-        let postId = arrOfPosts[indexPath.row].postID
-        
-        NotificationCenter.default.post(name: Notification.Name("SendData"), object: postId)
-        
+       // cell.whoLovePostButton.addTarget(self, action: #selector(gotoWhoLovepostPage), for: .touchUpInside)
+        postId = arrOfPosts[indexPath.row].postID
+       
+        cell.whoLovePostButton.addAction(UIAction(handler: { (action) in
+            let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
+            st.postID = self.arrOfPosts[indexPath.row].postID
+            self.present(st, animated: true, completion: nil)
+        }), for: .touchUpInside)
         
         for person in self.arrOfPosts[indexPath.row].whoLovePost{
             if person == Auth.auth().currentUser?.uid{
@@ -95,10 +98,13 @@ extension HomeViewController: UITableViewDataSource{
         }
         return cell
     }
-    @objc func gotoWhoLovepostPage(){
+   /* @objc func gotoWhoLovepostPage(){
         let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
+        print("popopo",postId)
+        NotificationCenter.default.post(name: Notification.Name("SendData"), object: postId)
+        st.arrOfPosts = self.arrOfPosts
         present(st, animated: true, completion: nil)
-    }
+    }*/
 }
 extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

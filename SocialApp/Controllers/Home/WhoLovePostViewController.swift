@@ -12,17 +12,15 @@ class WhoLovePostViewController: UIViewController {
 
     @IBOutlet weak var whoLovePostTableView: UITableView!
     let ref = Database.database().reference()
+    var postID: String?
+    var arrOfID = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabelView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(listenForNotification(notification:)), name: NSNotification.Name(rawValue: "SendData"), object: nil)
+        //print(postID)
+        getWhoLovePost()
     }
-    @objc func listenForNotification(notification: Notification){
-        if let data = notification.object as? String{
-            print("data",data)
-        }
-    }
+ 
     func setUpTabelView(){
         whoLovePostTableView.register(UINib(nibName: "WhoLovePostTableViewCell", bundle: nil), forCellReuseIdentifier: "WhoLovePostTableViewCell")
         whoLovePostTableView.dataSource = self
@@ -31,18 +29,45 @@ class WhoLovePostViewController: UIViewController {
 }
 extension WhoLovePostViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return arrOfID.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WhoLovePostTableViewCell", for: indexPath) as! WhoLovePostTableViewCell
-        /*cell.userNameLabel.text = arrOfWhoLovePost[indexPath.row].name
-        cell.getPhoto = arrOfWhoLovePost[indexPath.row]*/
-        cell.userNameLabel.text = "Hello, User Love post"
+        
+        self.ref.child("Users").child(arrOfID[indexPath.row]).observe(.value) { (dataSnap) in
+            if let value = dataSnap.value as? [String: Any]{
+                guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {
+                    return
+                }
+                cell.userNameLabel.text = name
+                cell.userImageView.kf.indicatorType = .activity
+                if let url = URL(string: profilePicture){
+                    cell.userImageView.kf.setImage(with: url)
+                }
+            }else{
+                print("Helo")
+            }
+        }
         return cell
     }
 }
 extension WhoLovePostViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+}
+extension WhoLovePostViewController{
+    func getWhoLovePost(){
+        guard let postId = postID else {return}
+        ref.child("AllPosts").child(postId).observe(.value) { (dataSnap) in
+            if let value = dataSnap.value as? [String: Any]{
+                guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
+                for (_,val) in whoLovePost{
+                    print(val)
+                    self.arrOfID.append(val as! String)
+                    print(self.arrOfID)
+                }
+            }
+        }
     }
 }
