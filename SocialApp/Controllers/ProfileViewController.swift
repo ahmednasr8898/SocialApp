@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
         getCurrentUserInformation()
     }
     func setUpDesign(){
-        personalImageView.layer.cornerRadius = personalImageView.frame.height / 2
+       /* personalImageView.layer.cornerRadius = personalImageView.frame.height / 2.0*/
         personalImageView.layer.borderWidth = 5
         personalImageView.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         personalImageView.clipsToBounds = true
