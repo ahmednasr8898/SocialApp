@@ -49,49 +49,60 @@ class HomeTableViewCell: UITableViewCell {
             }
         }
     }
+}
+extension HomeTableViewCell{
     @IBAction func loveButtonPressed(sender: UIButton){
         sender.isSelected = !sender.isSelected
         if sender.isSelected{
-            //love is red
-            sender.setImage(UIImage(named: "like"), for: .normal)
             //append 1 to love score in database and labelLove
             guard let postID = postID, let userID = Auth.auth().currentUser?.uid, let personLikePostID = ref.childByAutoId().key else {return}
-            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(personLikePostID).setValue(userID)
-                self.getNumberOfLove { (countOfLove) in
-                    let newCount = countOfLove + 1
-                    self.numOfLoveLabel.text = String(newCount)
-                    self.ref.child("AllPosts").child(postID).updateChildValues(["Love": newCount])
-                }
-        }else{
-            //love is white
-            sender.setImage(UIImage(named: "unlike"), for: .normal)
-            //remove 1 to love score in database and labelLove
-            guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
-            
-            ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnap) in
-                if let value = dataSnap.value as? [String: Any]{
-                    guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
-                    
-                    for (id,val) in whoLovePost{
-                        if val as? String == userID{
-                            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(id).removeValue()
+            self.ref.child("AllPosts").child(postID).updateChildValues(["WhoLovePost/\(personLikePostID)" : userID], withCompletionBlock: { (error, dataSnap) in
+                if error == nil{
+                    self.ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnapshot) in
+                        if let value = dataSnapshot.value as? [String: Any]{
+                            guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
+                            let count = whoLovePost.count
+                            self.numOfLoveLabel.text = String(count)
+                            self.ref.child("AllPosts").child(postID).updateChildValues(["Love": count])
+                            //love button is red
+                            sender.setImage(UIImage(named: "like"), for: .normal)
+                            sender.isSelected = true
+                            sender.isEnabled = true
                         }
                     }
                 }
-            }
-            self.getNumberOfLove { (countOfLove) in
-                let newCount = countOfLove - 1
-                self.numOfLoveLabel.text = String(newCount)
-                self.ref.child("AllPosts").child(postID).updateChildValues(["Love": newCount])
-            }
-        }
-    }
-    func getNumberOfLove(comlation: @escaping (_ numberOFLove: Int)->Void){
-        guard let postID = self.postID else {return}
-        ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnapshot) in
-            if let value = dataSnapshot.value as? [String: Any]{
-                guard let numOfLove = value["Love"] as? Int else {return}
-                comlation(numOfLove)
+            })
+        }else{
+            //remove 1 to love score in database and labelLove
+            guard let postID = postID, let userID = Auth.auth().currentUser?.uid else {return}
+            ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnap) in
+                if let value = dataSnap.value as? [String: Any]{
+                    guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
+                    for (id,val) in whoLovePost{
+                        if val as? String == userID{
+                            self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(id).removeValue { (error, dataSnap) in
+                                if error == nil{
+                                    self.ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) {
+                                        (dataSnapshot) in
+                                        if let value = dataSnapshot.value as? [String: Any]{
+                                            if let whoLovePost = value["WhoLovePost"] as? [String: Any] {
+                                            let count = whoLovePost.count
+                                            self.numOfLoveLabel.text = String(count)
+                                            self.ref.child("AllPosts").child(postID).updateChildValues(["Love": count])
+                                            }else{
+                                                self.numOfLoveLabel.text = "0"
+                                                self.ref.child("AllPosts").child(postID).updateChildValues(["Love": 0])
+                                            }
+                                            //love button is white
+                                            sender.setImage(UIImage(named: "unlike"), for: .normal)
+                                            sender.isSelected = false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

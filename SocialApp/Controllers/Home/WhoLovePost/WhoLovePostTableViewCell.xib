@@ -9,32 +9,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="125" id="KGk-i7-Jjw" customClass="WhoLovePostTableViewCell" customModule="SocialApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="342" height="125"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="KGk-i7-Jjw" customClass="WhoLovePostTableViewCell" customModule="SocialApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="73"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="342" height="125"/>
+                <rect key="frame" x="0.0" y="0.0" width="353" height="73"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMW-oo-T3Z">
-                        <rect key="frame" x="134.5" y="50" width="171" height="25"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firebase" translatesAutoresizingMaskIntoConstraints="NO" id="adY-g2-zeE">
-                        <rect key="frame" x="12" y="6.5" width="102.5" height="112.5"/>
-                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="kqN-pA-7dx">
+                        <rect key="frame" x="12" y="12" width="329" height="49"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firebase" translatesAutoresizingMaskIntoConstraints="NO" id="adY-g2-zeE">
+                                <rect key="frame" x="0.0" y="0.5" width="66" height="48"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMW-oo-T3Z">
+                                <rect key="frame" x="92" y="12.5" width="237" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="adY-g2-zeE" firstAttribute="width" secondItem="kqN-pA-7dx" secondAttribute="width" multiplier="0.2" id="OsT-Yz-Yan"/>
+                        </constraints>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="adY-g2-zeE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0H7-nb-V7g"/>
-                    <constraint firstItem="iMW-oo-T3Z" firstAttribute="leading" secondItem="adY-g2-zeE" secondAttribute="trailing" constant="20" id="A7N-YY-EKx"/>
-                    <constraint firstItem="iMW-oo-T3Z" firstAttribute="centerY" secondItem="adY-g2-zeE" secondAttribute="centerY" id="AqA-cv-Whv"/>
-                    <constraint firstItem="adY-g2-zeE" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.3" id="OIE-Ex-BCs"/>
-                    <constraint firstItem="iMW-oo-T3Z" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="V2b-LR-1ui"/>
-                    <constraint firstItem="adY-g2-zeE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="iBW-Qe-dy5"/>
-                    <constraint firstItem="adY-g2-zeE" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.9" id="pay-9y-eq2"/>
-                    <constraint firstItem="iMW-oo-T3Z" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.2" id="ss5-ri-OIs"/>
+                    <constraint firstItem="kqN-pA-7dx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Z3Z-3M-28P"/>
+                    <constraint firstAttribute="bottom" secondItem="kqN-pA-7dx" secondAttribute="bottom" constant="12" id="lCb-XX-Nb0"/>
+                    <constraint firstItem="kqN-pA-7dx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="npU-zk-mot"/>
+                    <constraint firstAttribute="trailing" secondItem="kqN-pA-7dx" secondAttribute="trailing" constant="12" id="wKp-1S-C62"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -42,7 +46,7 @@
                 <outlet property="userImageView" destination="adY-g2-zeE" id="Q5v-kk-glG"/>
                 <outlet property="userNameLabel" destination="iMW-oo-T3Z" id="cfm-Uo-ayI"/>
             </connections>
-            <point key="canvasLocation" x="146.37681159420291" y="84.709821428571431"/>
+            <point key="canvasLocation" x="154.34782608695653" y="102.12053571428571"/>
         </tableViewCell>
     </objects>
     <resources>

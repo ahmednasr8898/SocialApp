@@ -33,7 +33,8 @@ class MenuViewController: UITableViewController {
         let itemIndex = indexPath.row
         if itemIndex == 0 {
             print("go to profile page")
-            self.goToByNavigate(storyboardName: "Main", viewControllerName: ProfileViewController.self)
+            /*self.goToByNavigate(storyboardName: "Main", viewControllerName: ProfileViewController.self)*/
+            self.goToByPresent(storyboardName: "Main", viewControllerName: ProfileViewController.self, showAs: .automatic)
         }else if itemIndex == 1{
             print("go to settings page")
             self.goToByPresent(storyboardName: "Main", viewControllerName: SettingsViewController.self, showAs: .automatic)

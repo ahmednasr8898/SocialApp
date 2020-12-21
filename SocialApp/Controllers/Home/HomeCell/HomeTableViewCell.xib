@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5n-m5-VRN">
                         <rect key="frame" x="8" y="8" width="448" height="291"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="who" translatesAutoresizingMaskIntoConstraints="NO" id="X1c-Vn-vEC">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="X1c-Vn-vEC">
                                 <rect key="frame" x="12" y="12" width="62.5" height="62.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="X1c-Vn-vEC" secondAttribute="height" multiplier="1:1" id="tXY-zb-ZsT"/>
@@ -127,6 +127,6 @@
         <image name="eyes" catalog="system" width="128" height="99"/>
         <image name="picture" width="512" height="512"/>
         <image name="unlike" width="512" height="512"/>
-        <image name="who" width="512" height="512"/>
+        <image name="user" width="512" height="512"/>
     </resources>
 </document>
