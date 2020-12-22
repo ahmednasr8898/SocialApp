@@ -9,6 +9,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 import Toast_Swift
+import Kingfisher
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -20,15 +21,16 @@ class ProfileViewController: UIViewController {
     var isProfile = false
     var isPersonal = false
     
+    let ref = Database.database().reference()
+    let storage = Storage.storage().reference()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDesign()
-        getProfileImage()
-        getCoverImage()
+        getProfileImages()
         getCurrentUserInformation()
     }
     func setUpDesign(){
-       /* personalImageView.layer.cornerRadius = personalImageView.frame.height / 2.0*/
         personalImageView.layer.borderWidth = 5
         personalImageView.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         personalImageView.clipsToBounds = true
@@ -70,7 +72,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     func updatePersonalImage(personalImage: Data){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        Storage.storage().reference().child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg").putData(personalImage, metadata: nil) { (_, error) in
+        storage.child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg").putData(personalImage, metadata: nil) { (_, error) in
             if error != nil{
                 print("faild in update image")
             }else{
@@ -90,7 +92,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     func updateCoverImage(coverImage: Data){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        Storage.storage().reference().child("ProfilePicture").child(userID).child("MyCoverPicture.jpeg").putData(coverImage, metadata: nil) { (_, error) in
+        storage.child("ProfilePicture").child(userID).child("MyCoverPicture.jpeg").putData(coverImage, metadata: nil) { (_, error) in
             if error != nil{
                 print("faild in update image")
             }else{
@@ -108,34 +110,23 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
     }
 }
-
 extension ProfileViewController{
-    func getCoverImage(){
+    func getProfileImages(){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        Storage.storage().reference().child("ProfilePicture").child(userID).child("MyCoverPicture.jpeg").getData(maxSize: 4000000) { (data, error) in
-            if error != nil{
-                print("error when get data\(String(describing: error?.localizedDescription))")
-            }else{
-                let image = UIImage(data: data!)
-                self.profileImageView.image = image
-            }
-        }
-    }
-    func getProfileImage(){
-        guard let userID = Auth.auth().currentUser?.uid else {return}
-        Storage.storage().reference().child("ProfilePicture").child(userID).child("MyProfilePicture.jpeg")
-            .getData(maxSize: 4000000) { (data, error) in
-                if error != nil{
-                    print("error when get data\(String(describing: error?.localizedDescription))")
-                }else{
-                    let image = UIImage(data: data!)
-                    self.personalImageView.image = image
+        self.ref.child("Users").child(userID).observeSingleEvent(of: .value) { (dataSnap) in
+            if let value = dataSnap.value as? [String: Any]{
+                guard let profilePicture = value["ProfilePicture"] as? String, let coverPicture = value["CoverPicture"] as? String else {return}
+                self.personalImageView.kf.indicatorType = .activity
+                self.profileImageView.kf.indicatorType = .activity
+                guard let profileUrl = URL(string: profilePicture), let coverUrl = URL(string: coverPicture)  else {return}
+                self.personalImageView.kf.setImage(with: profileUrl)
+                self.profileImageView.kf.setImage(with: coverUrl)
             }
         }
     }
     func getCurrentUserInformation(){
         guard let userID = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
+        ref.child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
             if let value = datasnap.value as? [String: Any] {
                 guard let name = value["name"] as? String else {return}
                 self.userNameLabel.text = name

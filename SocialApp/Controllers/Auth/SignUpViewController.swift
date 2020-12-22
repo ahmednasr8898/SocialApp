@@ -53,11 +53,11 @@ class SignUpViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     func setUpTextFields(){
-        nameTextField.setUpDesign(cornerRadius: self.nameTextField.frame.height / 2, borderWidth: 0.9, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        phoneTextField.setUpDesign(cornerRadius: self.phoneTextField.frame.height / 2, borderWidth: 0.9, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        emailTextField.setUpDesign(cornerRadius: self.emailTextField.frame.height / 2, borderWidth: 0.9, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        passwordTextField.setUpDesign(cornerRadius: self.passwordTextField.frame.height / 2, borderWidth: 0.9, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        confiremPasswordTextField.setUpDesign(cornerRadius: self.confiremPasswordTextField.frame.height / 2, borderWidth: 0.9, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        nameTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        phoneTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        emailTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        passwordTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        confiremPasswordTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
     }
     func setUpButtons(){
         createAccountButton.layer.cornerRadius = self.createAccountButton.frame.height / 2
