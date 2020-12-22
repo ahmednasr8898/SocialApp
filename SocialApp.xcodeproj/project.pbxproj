@@ -192,7 +192,7 @@
 				797751442585D6CA00F041FD /* Auth */,
 				797751452585D6D700F041FD /* Home */,
 				797751462585D6FF00F041FD /* Settings */,
-				797751522585FC2200F041FD /* ProfileViewController.swift */,
+				79DC08DF25919FB600B2F6DA /* Profile */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -268,6 +268,14 @@
 				79D57BF1257DC344003EA0F6 /* HomeTableViewCell.xib */,
 			);
 			path = HomeCell;
+			sourceTree = "<group>";
+		};
+		79DC08DF25919FB600B2F6DA /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				797751522585FC2200F041FD /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		9C064350A64D5A3C16D6BBCE /* Frameworks */ = {

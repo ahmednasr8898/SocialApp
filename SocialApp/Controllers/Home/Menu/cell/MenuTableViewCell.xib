@@ -20,17 +20,17 @@
                         <rect key="frame" x="10" y="10" width="326" height="74"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gh8-u9-nzR">
-                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="74"/>
+                                <rect key="frame" x="0.0" y="0.0" width="65" height="74"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-yE-dX1">
-                                <rect key="frame" x="111.5" y="22" width="214.5" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-yE-dX1" customClass="CustomFontSizeLabel" customModule="SocialApp" customModuleProvider="target">
+                                <rect key="frame" x="95" y="22" width="231" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gh8-u9-nzR" firstAttribute="width" secondItem="rnU-PE-r1V" secondAttribute="width" multiplier="0.25" id="AaB-37-5Bl"/>
+                            <constraint firstItem="gh8-u9-nzR" firstAttribute="width" secondItem="rnU-PE-r1V" secondAttribute="width" multiplier="0.2" id="AaB-37-5Bl"/>
                             <constraint firstItem="DeR-yE-dX1" firstAttribute="height" secondItem="rnU-PE-r1V" secondAttribute="height" multiplier="0.4" id="zbZ-Vh-y4H"/>
                         </constraints>
                     </stackView>

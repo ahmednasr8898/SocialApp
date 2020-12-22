@@ -53,14 +53,14 @@ class SignUpViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     func setUpTextFields(){
-        nameTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        phoneTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        emailTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        passwordTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        confiremPasswordTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        nameTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        phoneTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        emailTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        passwordTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        confiremPasswordTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
     }
     func setUpButtons(){
-        createAccountButton.layer.cornerRadius = self.createAccountButton.frame.height / 2
+        createAccountButton.layer.cornerRadius = 10
     }
     func setUpConstraint(){
         topNameConstriant.constant = self.view.frame.height * 0.12

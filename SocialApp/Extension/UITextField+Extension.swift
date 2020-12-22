@@ -23,7 +23,7 @@ extension UITextField {
         self.layer.borderWidth = borderWidth
         self.layer.borderColor = borderColor
         self.layer.masksToBounds = true
-        self.setLeftPaddingPoints(10)
-        self.setRightPaddingPoints(10)
+        self.setLeftPaddingPoints(6)
+        self.setRightPaddingPoints(6)
     }
 }

@@ -46,11 +46,11 @@ class LoginViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     func setUpTextFields(){
-        emailTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
-        passwordTextField.setUpDesign(cornerRadius: 0, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        emailTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        passwordTextField.setUpDesign(cornerRadius: 6, borderWidth: 1, borderColor: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
     }
     func setUpButtons(){
-        loginButton.layer.cornerRadius = self.loginButton.frame.height / 2
+        loginButton.layer.cornerRadius = 10
         facebookLoginButton.layer.cornerRadius = self.facebookLoginButton.frame.height / 2
     }
     func setUpConstraint(){

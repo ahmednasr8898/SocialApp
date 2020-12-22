@@ -16,16 +16,23 @@ class HomeViewController: UIViewController {
     var menu: SideMenuNavigationController?
     var ref = Database.database().reference()
     var arrOfPosts = [PostsModel]()
-   
+    let noLovePostLabel = UILabel()
     override func viewDidLoad() {
         super.viewDidLoad()
         checkCurrentUser()
         setUpTableView()
         setUpMenu()
-        getAllPosts()
     }
     override func viewWillAppear(_ animated: Bool) {
         setUpNavigation()
+        getAllPosts { (noPosts) in
+            if noPosts{
+                self.homeTableView.isHidden = false
+                self.noLovePostLabel.isHidden = true
+            }else{
+                self.checkIfTableViewEmpty()
+            }
+        }
     }
     func setUpTableView(){
         homeTableView.dataSource = self
@@ -35,6 +42,19 @@ class HomeViewController: UIViewController {
     func setUpNavigation(){
         self.navigationController?.navigationBar.barTintColor = UIColor.systemPink
         self.navigationController?.navigationBar.tintColor = UIColor.black
+    }
+    func checkIfTableViewEmpty(){
+        if arrOfPosts.count == 0{
+            self.homeTableView.isHidden = true
+            self.noLovePostLabel.isHidden = false
+            noLovePostLabel.isHidden = false
+            noLovePostLabel.text = "no post yet."
+            noLovePostLabel.textAlignment = .center
+            noLovePostLabel.textColor = .black
+            noLovePostLabel.font = UIFont.systemFont(ofSize: 22)
+            noLovePostLabel.frame = CGRect(x: 0, y: self.view.center.y, width: self.view.frame.width, height: 50)
+            self.view.addSubview(noLovePostLabel)
+        }
     }
     @IBAction func addNewPostOnClick(_ sender: UIBarButtonItem) {
         self.goToByPresent(storyboardName: "Main", viewControllerName: AddPostViewController.self, showAs: .automatic)
@@ -94,18 +114,22 @@ extension HomeViewController: UITableViewDataSource{
 }
 extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 380
+        //return 380
+        return 500
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.systemGray5
     }
 }
 extension HomeViewController{
-    func getAllPosts(){
+    func getAllPosts(compaltion: @escaping (Bool)->()){
+        compaltion(false)
         ref.child("AllPosts").observe(.childAdded){ snap in
             if let value = snap.value as? [String: Any] {
                 let posts = PostsModel()
-                guard let post = value["Post"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int, let userID = value["UserID"] as? String else{return}
+                guard let post = value["Post"] as? String, let imagePost = value["imagePost"] as? String, let love = value["Love"] as? Int, let userID = value["UserID"] as? String else{
+                    return
+                }
                 posts.postID = snap.key
                 posts.bodyPost = post
                 posts.imagePost = imagePost
@@ -118,6 +142,7 @@ extension HomeViewController{
                 }
                 self.arrOfPosts.append(posts)
                 self.homeTableView.reloadData()
+                compaltion(true)
             }
         }
     }

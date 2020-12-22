@@ -18,10 +18,24 @@ class WhoLovePostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabelView()
-        //print(postID)
-        getWhoLovePost()
+        getWhoLovePost { (noData) in
+            if !noData{
+                self.checkIfTableViewEmpty()
+            }
+        }
     }
- 
+    func checkIfTableViewEmpty(){
+        if arrOfID.count == 0{
+            self.whoLovePostTableView.isHidden = true
+            let noLovePostLabel = UILabel()
+            noLovePostLabel.text = "no love in this post"
+            noLovePostLabel.textAlignment = .center
+            noLovePostLabel.textColor = .black
+            noLovePostLabel.font = UIFont.systemFont(ofSize: 22)
+            noLovePostLabel.frame = CGRect(x: 0, y: self.view.center.y, width: self.view.frame.width, height: 50)
+            self.view.addSubview(noLovePostLabel)
+        }
+    }
     func setUpTabelView(){
         whoLovePostTableView.register(UINib(nibName: "WhoLovePostTableViewCell", bundle: nil), forCellReuseIdentifier: "WhoLovePostTableViewCell")
         whoLovePostTableView.dataSource = self
@@ -56,13 +70,17 @@ extension WhoLovePostViewController: UITableViewDelegate{
     }
 }
 extension WhoLovePostViewController{
-    func getWhoLovePost(){
+    func getWhoLovePost(complation: @escaping (Bool)->()){
         guard let postId = postID else {return}
         ref.child("AllPosts").child(postId).observe(.value) { (dataSnap) in
             if let value = dataSnap.value as? [String: Any]{
-                guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
+                guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {
+                    complation(false)
+                    return
+                }
                 for (_,val) in whoLovePost{
                     self.arrOfID.append(val as! String)
+                    complation(true)
                 }
             }
         }
