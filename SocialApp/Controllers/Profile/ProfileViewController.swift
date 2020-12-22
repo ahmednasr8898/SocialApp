@@ -11,6 +11,11 @@ import FirebaseDatabase
 import Toast_Swift
 import Kingfisher
 class ProfileViewController: UIViewController {
+    
+    @IBOutlet weak var topProfileImageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftUpdateProfileImageConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topUserNameConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topDescConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var personalImageView: UIImageView!
@@ -29,6 +34,16 @@ class ProfileViewController: UIViewController {
         setUpDesign()
         getProfileImages()
         getCurrentUserInformation()
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setUpConstraint()
+    }
+    func setUpConstraint(){
+        topProfileImageConstraint.constant = self.view.frame.height * -0.10
+        topUserNameConstraint.constant = self.view.frame.height * 0.06
+        topDescConstraint.constant = self.view.frame.height * 0.10
+        leftUpdateProfileImageConstraint.constant = self.view.frame.width * 0.28
     }
     func setUpDesign(){
         personalImageView.layer.borderWidth = 5

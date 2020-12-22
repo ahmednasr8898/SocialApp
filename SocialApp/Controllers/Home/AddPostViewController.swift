@@ -27,6 +27,7 @@ class AddPostViewController: UIViewController {
         super.viewDidLoad()
         setUpConstarint()
         setUpDesign()
+        setUpMessegePostTextView()
     }
     func setUpDesign(){
         descriptionView.backgroundColor = .white
@@ -66,8 +67,13 @@ class AddPostViewController: UIViewController {
         }
     }
     func checkValid()-> Bool{
-        guard messegPostTextView.text != nil, !messegPostTextView.text.isEmpty, imageViewPost.image != nil else {
-            self.showAlert(title: "happend problem", messege: "check All fields...")
+        guard messegPostTextView.text != nil, !messegPostTextView.text.isEmpty, messegPostTextView.text !=
+                "what are you thinking..." else {
+            self.showAlert(title: "can't upload post", messege: "enter descreption to your post")
+            return false
+        }
+        guard  imageViewPost.image != nil else {
+            self.showAlert(title: "can't upload post", messege: "select photo to your post")
             return false
         }
         return true
@@ -119,4 +125,32 @@ extension AddPostViewController{
         }
     }
 }
-
+extension AddPostViewController: UITextViewDelegate{
+    func setUpMessegePostTextView(){
+        messegPostTextView.text = "what are you thinking..."
+        messegPostTextView.textColor = UIColor.lightGray
+        messegPostTextView.font = UIFont.systemFont(ofSize: 13)
+        messegPostTextView.delegate = self
+    }
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "what are you thinking..." {
+            textView.text = ""
+            textView.textColor = UIColor.black
+            textView.font = UIFont.systemFont(ofSize: 16)
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "/n" {
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "what are you thinking..."
+            textView.textColor = UIColor.lightGray
+            textView.font = UIFont.systemFont(ofSize: 13)
+        }
+    }
+}
