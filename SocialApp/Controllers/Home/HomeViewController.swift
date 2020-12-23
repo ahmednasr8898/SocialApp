@@ -17,14 +17,13 @@ class HomeViewController: UIViewController {
     var ref = Database.database().reference()
     var arrOfPosts = [PostsModel]()
     let noLovePostLabel = UILabel()
+    let reFreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkCurrentUser()
         setUpTableView()
         setUpMenu()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        setUpNavigation()
         getAllPosts { (noPosts) in
             if noPosts{
                 self.homeTableView.isHidden = false
@@ -33,6 +32,20 @@ class HomeViewController: UIViewController {
                 self.checkIfTableViewEmpty()
             }
         }
+        setUpRefreshControl()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setUpNavigation()
+    }
+    func setUpRefreshControl(){
+        reFreshControl.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        reFreshControl.addTarget(self, action: #selector(refreshDataInTabelview), for: .valueChanged)
+        homeTableView.addSubview(reFreshControl)
+    }
+    @objc func refreshDataInTabelview(){
+        print("refresh data")
+        self.homeTableView.reloadData()
+        reFreshControl.endRefreshing()
     }
     func setUpTableView(){
         homeTableView.dataSource = self
@@ -81,6 +94,7 @@ extension HomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.descriptionPostLabel.text = arrOfPosts[indexPath.row].bodyPost
+        //get Name and profile for user that make post
         self.ref.child("Users").child(arrOfPosts[indexPath.row].userID).observe(.value) { (dataSnap) in
             if let value = dataSnap.value as? [String: Any]{
                 guard let name = value["name"] as? String, let profilePicture = value["ProfilePicture"] as? String else {
@@ -94,19 +108,46 @@ extension HomeViewController: UITableViewDataSource{
             }
         }
         cell.getPhotoImagePost = arrOfPosts[indexPath.row]
+        
+        // handel love button
+        let userID = (Auth.auth().currentUser?.uid) ?? ""
+        let personLikePostID = ref.childByAutoId().key ?? ""
+        let postID = self.arrOfPosts[indexPath.row].postID
+        cell.loveButton.addAction(UIAction(handler: { (action) in
+            cell.loveButton.isSelected = !cell.loveButton.isSelected
+            switch cell.loveButton.isSelected{
+            case true:
+                print("Selected")
+                cell.loveButton.setImage(UIImage(named: "like"), for: .normal)
+                self.loveButtonSelected(postID: postID, personLikePostID: personLikePostID, userID: userID, indexPathRow: indexPath.row) { (success) in
+                    if success{
+                        cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
+                    }
+                }
+            case false:
+                print("non selcted")
+                cell.loveButton.setImage(UIImage(named: "unlike"), for: .normal)
+                self.loveButtonNonSelected(postID: postID, userID: userID, indexPathRow: indexPath.row) { (success) in
+                    if success{
+                        cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
+                    }
+                }
+            }
+        }), for: .touchUpInside)
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
-        cell.postID = arrOfPosts[indexPath.row].postID
-  
+        //handel who love button
         cell.whoLovePostButton.addAction(UIAction(handler: { (action) in
             let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
             st.postID = self.arrOfPosts[indexPath.row].postID
             self.present(st, animated: true, completion: nil)
         }), for: .touchUpInside)
-        
+        //check if current user was love any post
         for person in self.arrOfPosts[indexPath.row].whoLovePost{
             if person == Auth.auth().currentUser?.uid{
                 cell.loveButton.isSelected = true
                 cell.loveButton.setImage(UIImage(named: "like"), for: .normal)
+            }else{
+                cell.loveButton.isSelected = false
             }
         }
         return cell
@@ -142,8 +183,58 @@ extension HomeViewController{
                 }
                 self.arrOfPosts.append(posts)
                 self.homeTableView.reloadData()
+                print("Arr of posts:", self.arrOfPosts)
                 compaltion(true)
             }
         }
     }
+}
+extension HomeViewController{
+    func loveButtonSelected(postID: String, personLikePostID: String, userID: String, indexPathRow: Int, complation: @escaping (Bool)->()){
+        self.ref.child("AllPosts").child(postID).updateChildValues(["WhoLovePost/\(personLikePostID)" : userID]) { (error, dataSnap) in
+            if error == nil{
+                self.getNumberOfLove(postID: postID) { (count) in
+                    self.ref.child("AllPosts").child(postID).updateChildValues(["Love": count])
+                    self.arrOfPosts[indexPathRow].love = count
+                    complation(true)
+                }
+            }
+        }
+    }
+}
+extension HomeViewController{
+    func loveButtonNonSelected(postID: String, userID: String, indexPathRow: Int, complation: @escaping (Bool)->()){
+        ref.child("AllPosts").child(postID).observeSingleEvent(of: .value){ (dataSnap) in
+            if let value = dataSnap.value as? [String: Any]{
+                guard let whoLovePost = value["WhoLovePost"] as? [String: Any] else {return}
+                for (id,val) in whoLovePost{
+                    if val as! String == userID{
+                        self.ref.child("AllPosts").child(postID).child("WhoLovePost").child(id).removeValue { (error, dataSnap) in
+                            if error == nil {
+                                self.getNumberOfLove(postID: postID) { (count) in
+                                    self.ref.child("AllPosts").child(postID).updateChildValues(["Love": count])
+                                    self.arrOfPosts[indexPathRow].love = count
+                                    complation(true)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+extension HomeViewController{
+    func getNumberOfLove(postID: String, complation: @escaping (Int)->()){
+        self.ref.child("AllPosts").child(postID).observeSingleEvent(of: .value) { (dataSnap) in
+             if let value = dataSnap.value as? [String: Any]{
+                 if let whoLovePost = value["WhoLovePost"] as? [String: Any]{
+                     let countLove = whoLovePost.count
+                     complation(countLove)
+                 }else{
+                     complation(0)
+                 }
+             }
+         }
+     }
 }

@@ -97,12 +97,12 @@ extension AddPostViewController{
         self.uplaodImagePost(postID: postID, imagePostData: imagePostData) { (url, error) in
             if error != nil {
                 print("fiald in upload image post")
-                completion(false)
+                completion(true)
             }else{
                 guard let url = url else {return}
                 print("success when get url imageURL")
                 self.ref.child("AllPosts").child(postID).setValue(["Post": post, "imagePost": url, "Love": 0, "UserID": userID])
-               completion(true)
+                completion(true)
             }
         }
     }
