@@ -70,9 +70,14 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="eyes" catalog="system"/>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AIx-hJ-I8h">
+                                <rect key="frame" x="463" y="30" width="42.5" height="34"/>
+                                <state key="normal" image="like"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="AIx-hJ-I8h" firstAttribute="centerX" secondItem="sfH-hC-OFA" secondAttribute="centerX" id="2pG-hB-haY"/>
                             <constraint firstItem="o90-X3-GfM" firstAttribute="width" secondItem="E5n-m5-VRN" secondAttribute="width" multiplier="0.9" id="3ej-bN-WTq"/>
                             <constraint firstItem="sfH-hC-OFA" firstAttribute="top" secondItem="E5n-m5-VRN" secondAttribute="top" constant="30" id="7ld-vt-ii0"/>
                             <constraint firstAttribute="bottom" secondItem="EUe-fd-kFA" secondAttribute="bottom" id="Adp-Qi-iLr"/>
@@ -83,11 +88,13 @@
                             <constraint firstItem="7Yn-mf-frK" firstAttribute="trailing" secondItem="o90-X3-GfM" secondAttribute="trailing" id="FEm-zI-KC8"/>
                             <constraint firstItem="X1c-Vn-vEC" firstAttribute="top" secondItem="E5n-m5-VRN" secondAttribute="top" constant="12" id="IFf-7E-IgS"/>
                             <constraint firstItem="sfH-hC-OFA" firstAttribute="height" secondItem="E5n-m5-VRN" secondAttribute="height" multiplier="0.07" id="JMo-BK-p0d"/>
+                            <constraint firstItem="AIx-hJ-I8h" firstAttribute="centerY" secondItem="sfH-hC-OFA" secondAttribute="centerY" id="Nlq-t8-nKX"/>
                             <constraint firstItem="xNc-cN-rKs" firstAttribute="width" secondItem="E5n-m5-VRN" secondAttribute="width" multiplier="0.4" id="USD-x6-Icz"/>
                             <constraint firstItem="xNc-cN-rKs" firstAttribute="top" secondItem="7Yn-mf-frK" secondAttribute="bottom" constant="7.5" id="UlH-cF-ISu"/>
                             <constraint firstItem="o90-X3-GfM" firstAttribute="top" secondItem="X1c-Vn-vEC" secondAttribute="bottom" constant="10" id="Yc5-Bo-M9s"/>
                             <constraint firstItem="7Yn-mf-frK" firstAttribute="top" secondItem="o90-X3-GfM" secondAttribute="bottom" constant="12" id="c8t-gQ-9gx"/>
                             <constraint firstItem="sfH-hC-OFA" firstAttribute="trailing" secondItem="o90-X3-GfM" secondAttribute="trailing" id="caX-gT-wvO"/>
+                            <constraint firstItem="AIx-hJ-I8h" firstAttribute="height" secondItem="sfH-hC-OFA" secondAttribute="height" id="fo1-Xs-1wd"/>
                             <constraint firstItem="o90-X3-GfM" firstAttribute="height" secondItem="E5n-m5-VRN" secondAttribute="height" multiplier="0.52" id="fwN-xn-Fh0"/>
                             <constraint firstItem="EUe-fd-kFA" firstAttribute="trailing" secondItem="o90-X3-GfM" secondAttribute="trailing" id="hFp-KX-QzP"/>
                             <constraint firstItem="X1c-Vn-vEC" firstAttribute="leading" secondItem="E5n-m5-VRN" secondAttribute="leading" constant="12" id="hkr-iW-juh"/>
@@ -99,6 +106,7 @@
                             <constraint firstItem="m72-S7-BGo" firstAttribute="height" secondItem="E5n-m5-VRN" secondAttribute="height" multiplier="0.1" id="pqZ-vQ-u92"/>
                             <constraint firstItem="o90-X3-GfM" firstAttribute="centerX" secondItem="E5n-m5-VRN" secondAttribute="centerX" id="s3E-Gz-dK2"/>
                             <constraint firstItem="xNc-cN-rKs" firstAttribute="leading" secondItem="o90-X3-GfM" secondAttribute="leading" id="yUp-eO-vb8"/>
+                            <constraint firstItem="AIx-hJ-I8h" firstAttribute="width" secondItem="sfH-hC-OFA" secondAttribute="width" id="z9g-KH-MM1"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -116,6 +124,7 @@
                 <outlet property="numOfLoveLabel" destination="nFg-7Q-Gop" id="AF3-Dd-syn"/>
                 <outlet property="postImageView" destination="o90-X3-GfM" id="dMn-OL-vO7"/>
                 <outlet property="postUIView" destination="E5n-m5-VRN" id="S5y-DJ-LgK"/>
+                <outlet property="unLoveButton" destination="AIx-hJ-I8h" id="wNL-ce-ytE"/>
                 <outlet property="userImageView" destination="X1c-Vn-vEC" id="akU-nW-6Sg"/>
                 <outlet property="userNameLabel" destination="m72-S7-BGo" id="bkr-9f-DW4"/>
                 <outlet property="whoLovePostButton" destination="EUe-fd-kFA" id="RrT-gL-V7w"/>
@@ -125,6 +134,7 @@
     </objects>
     <resources>
         <image name="eyes" catalog="system" width="128" height="99"/>
+        <image name="like" width="512" height="512"/>
         <image name="picture" width="512" height="512"/>
         <image name="unlike" width="512" height="512"/>
         <image name="user" width="512" height="512"/>

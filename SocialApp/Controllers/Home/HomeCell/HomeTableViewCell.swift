@@ -18,6 +18,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionPostLabel: UILabel!
     @IBOutlet weak var whoLovePostButton: UIButton!
    
+    @IBOutlet weak var unLoveButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

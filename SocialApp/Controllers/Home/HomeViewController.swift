@@ -108,31 +108,33 @@ extension HomeViewController: UITableViewDataSource{
             }
         }
         cell.getPhotoImagePost = arrOfPosts[indexPath.row]
-        
         // handel love button
         let userID = (Auth.auth().currentUser?.uid) ?? ""
         let personLikePostID = ref.childByAutoId().key ?? ""
         let postID = self.arrOfPosts[indexPath.row].postID
         cell.loveButton.addAction(UIAction(handler: { (action) in
-            cell.loveButton.isSelected = !cell.loveButton.isSelected
-            switch cell.loveButton.isSelected{
-            case true:
-                print("Selected")
-                cell.loveButton.setImage(UIImage(named: "like"), for: .normal)
-                self.loveButtonSelected(postID: postID, personLikePostID: personLikePostID, userID: userID, indexPathRow: indexPath.row) { (success) in
-                    if success{
-                        cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
-                    }
-                }
-            case false:
-                print("non selcted")
-                cell.loveButton.setImage(UIImage(named: "unlike"), for: .normal)
-                self.loveButtonNonSelected(postID: postID, userID: userID, indexPathRow: indexPath.row) { (success) in
-                    if success{
-                        cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
-                    }
+            cell.loveButton.isEnabled = false
+            print("Love is true")
+            self.loveButtonSelected(postID: postID, personLikePostID: personLikePostID, userID: userID, indexPathRow: indexPath.row) { (success) in
+                if success{
+                    cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
                 }
             }
+            cell.loveButton.isHidden = true
+            cell.unLoveButton.isHidden = false
+            cell.loveButton.isEnabled = true
+        }), for: .touchUpInside)
+        cell.unLoveButton.addAction(UIAction(handler: { (action) in
+            cell.unLoveButton.isEnabled = false
+            print("Love is fasle")
+            self.loveButtonNonSelected(postID: postID, userID: userID, indexPathRow: indexPath.row) { (success) in
+                if success{
+                    cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
+                }
+            }
+            cell.loveButton.isHidden = false
+            cell.unLoveButton.isHidden = true
+            cell.unLoveButton.isEnabled = true
         }), for: .touchUpInside)
         cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
         //handel who love button
@@ -144,10 +146,13 @@ extension HomeViewController: UITableViewDataSource{
         //check if current user was love any post
         for person in self.arrOfPosts[indexPath.row].whoLovePost{
             if person == Auth.auth().currentUser?.uid{
-                cell.loveButton.isSelected = true
-                cell.loveButton.setImage(UIImage(named: "like"), for: .normal)
+                cell.loveButton.isHidden = true
+                cell.unLoveButton.isHidden = false
+                cell.unLoveButton.isEnabled = true
             }else{
-                cell.loveButton.isSelected = false
+                cell.loveButton.isHidden = false
+                cell.unLoveButton.isHidden = true
+                cell.loveButton.isEnabled = true
             }
         }
         return cell
@@ -200,6 +205,7 @@ extension HomeViewController{
                 }
             }
         }
+        ref.removeAllObservers()
     }
 }
 extension HomeViewController{
@@ -222,6 +228,7 @@ extension HomeViewController{
                 }
             }
         }
+        ref.removeAllObservers()
     }
 }
 extension HomeViewController{
@@ -236,5 +243,6 @@ extension HomeViewController{
                  }
              }
          }
+        ref.removeAllObservers()
      }
 }
