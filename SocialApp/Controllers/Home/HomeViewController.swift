@@ -10,6 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import FirebaseStorage
 import Kingfisher
+
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var homeTableView: UITableView!
@@ -112,47 +113,42 @@ extension HomeViewController: UITableViewDataSource{
         let userID = (Auth.auth().currentUser?.uid) ?? ""
         let personLikePostID = ref.childByAutoId().key ?? ""
         let postID = self.arrOfPosts[indexPath.row].postID
-        cell.loveButton.addAction(UIAction(handler: { (action) in
-            cell.loveButton.isEnabled = false
-            print("Love is true")
-            self.loveButtonSelected(postID: postID, personLikePostID: personLikePostID, userID: userID, indexPathRow: indexPath.row) { (success) in
-                if success{
-                    cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
+        
+        cell.addLoveToPost = {
+            cell.loveButton.isSelected = !cell.loveButton.isSelected
+            if cell.loveButton.isSelected{
+                print("selected")
+                cell.loveButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                self.loveButtonSelected(postID: postID, personLikePostID: personLikePostID, userID: userID, indexPathRow: indexPath.row) { (success) in
+                    if success{
+                        cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
+                    }
+                }
+            }else{
+                print("non selcted")
+                cell.loveButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.loveButtonNonSelected(postID: postID, userID: userID, indexPathRow: indexPath.row) { (success) in
+                    if success{
+                        cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
+                    }
                 }
             }
-            cell.loveButton.isHidden = true
-            cell.unLoveButton.isHidden = false
-            cell.loveButton.isEnabled = true
-        }), for: .touchUpInside)
-        cell.unLoveButton.addAction(UIAction(handler: { (action) in
-            cell.unLoveButton.isEnabled = false
-            print("Love is fasle")
-            self.loveButtonNonSelected(postID: postID, userID: userID, indexPathRow: indexPath.row) { (success) in
-                if success{
-                    cell.numOfLoveLabel.text = String(self.arrOfPosts[indexPath.row].love)
-                }
-            }
-            cell.loveButton.isHidden = false
-            cell.unLoveButton.isHidden = true
-            cell.unLoveButton.isEnabled = true
-        }), for: .touchUpInside)
-        cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
-        //handel who love button
-        cell.whoLovePostButton.addAction(UIAction(handler: { (action) in
+        }
+        
+        cell.whoLovePost = {
             let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
             st.postID = self.arrOfPosts[indexPath.row].postID
             self.present(st, animated: true, completion: nil)
-        }), for: .touchUpInside)
+        }
         //check if current user was love any post
+        cell.numOfLoveLabel.text = String(arrOfPosts[indexPath.row].love)
         for person in self.arrOfPosts[indexPath.row].whoLovePost{
             if person == Auth.auth().currentUser?.uid{
-                cell.loveButton.isHidden = true
-                cell.unLoveButton.isHidden = false
-                cell.unLoveButton.isEnabled = true
+                cell.loveButton.isSelected = true
+                cell.loveButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }else{
-                cell.loveButton.isHidden = false
-                cell.unLoveButton.isHidden = true
-                cell.loveButton.isEnabled = true
+                cell.loveButton.isSelected = false
+                cell.loveButton.setImage(UIImage(systemName: "heart"), for: .normal)
             }
         }
         return cell
@@ -160,7 +156,6 @@ extension HomeViewController: UITableViewDataSource{
 }
 extension HomeViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //return 380
         return 500
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -17,8 +17,14 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var descriptionPostLabel: UILabel!
     @IBOutlet weak var whoLovePostButton: UIButton!
-   
-    @IBOutlet weak var unLoveButton: UIButton!
+    var addLoveToPost: (()->())?
+    var whoLovePost: (()->())?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        loveButton.setImage(UIImage(systemName: "heart"), for: .normal)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -43,5 +49,13 @@ class HomeTableViewCell: UITableViewCell {
                 self.postImageView.kf.setImage(with: url)
             }
         }
+    }
+    
+    @IBAction func didPressedOnLoveButton(_ sender: UIButton) {
+        addLoveToPost?()
+    }
+    
+    @IBAction func didPressedOnWhoLovePost(_ sender: Any) {
+        whoLovePost?()
     }
 }

@@ -17,7 +17,6 @@ class MenuViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return items.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,7 +32,6 @@ class MenuViewController: UITableViewController {
         let itemIndex = indexPath.row
         if itemIndex == 0 {
             print("go to profile page")
-            /*self.goToByNavigate(storyboardName: "Main", viewControllerName: ProfileViewController.self)*/
             self.goToByPresent(storyboardName: "Main", viewControllerName: ProfileViewController.self, showAs: .automatic)
         }else if itemIndex == 1{
             print("go to settings page")
@@ -48,7 +46,6 @@ class MenuViewController: UITableViewController {
         do {
             try firebaseAuth.signOut()
             self.hideIndicator()
-            //dismiss(animated: true, completion: nil)
             self.goToByNavigate(storyboardName: "Main", viewControllerName: AuthViewController.self)
         }catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
@@ -57,7 +54,7 @@ class MenuViewController: UITableViewController {
     }
     func sureLogOut(){
         let alert = UIAlertController(title: "Are you sure?", message: "Log Out !!", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Ok", style: .default) { (_) in
+        let okButton = UIAlertAction(title: "Ok", style: .destructive) { (_) in
             self.logOut()
         }
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
