@@ -13,7 +13,9 @@ class AddPostViewController: UIViewController {
     
     @IBOutlet weak var messegPostTextView: UITextView!
     @IBOutlet weak var imageViewPost: UIImageView!
-    @IBOutlet weak var descriptionView: UIView!
+    @IBOutlet weak var profilePicImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
     @IBOutlet weak var topPostConstraint: NSLayoutConstraint!
     @IBOutlet weak var rightPostConstraint: NSLayoutConstraint!
     @IBOutlet weak var topDescriptionConstraint: NSLayoutConstraint!
@@ -25,18 +27,20 @@ class AddPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpConstarint()
-        setUpDesign()
+        profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.height/2
+        profilePicImageView.clipsToBounds = true
+        //setUpConstarint()
+        //setUpDesign()
         setUpMessegePostTextView()
     }
-    func setUpDesign(){
+   /* func setUpDesign(){
         descriptionView.backgroundColor = .white
         descriptionView.layer.cornerRadius = 10.0
         descriptionView.layer.shadowColor = UIColor.gray.cgColor
         descriptionView.layer.shadowOffset = CGSize(width: 0.0, height: 3)
         descriptionView.layer.shadowRadius = 2.0
         descriptionView.layer.shadowOpacity = 0.7
-    }
+    }*/
     func setUpConstarint(){
         topPostConstraint.constant = self.view.frame.height * 0.021
         rightPostConstraint.constant = self.view.frame.height  * 0.023
@@ -51,7 +55,7 @@ class AddPostViewController: UIViewController {
         picker.sourceType = .photoLibrary
         self.present(picker, animated: true, completion: nil)
     }
-    @IBAction func uploadPostOnClick(_ sender: UIButton) {
+    @IBAction func uploadPostOnClick(_ sender: UIBarButtonItem) {
         if checkValid(){
             //upload post
             uploadPost { (isSuccess) in
@@ -129,14 +133,17 @@ extension AddPostViewController: UITextViewDelegate{
     func setUpMessegePostTextView(){
         messegPostTextView.text = "what are you thinking..."
         messegPostTextView.textColor = UIColor.lightGray
-        messegPostTextView.font = UIFont.systemFont(ofSize: 13)
+        messegPostTextView.font = UIFont.systemFont(ofSize: 20)
+        messegPostTextView.returnKeyType = .done
         messegPostTextView.delegate = self
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "what are you thinking..." {
+        print("DidBeginEditing")
+        if textView.textColor == .lightGray {
+            print("DidBeginEditing 1")
             textView.text = ""
             textView.textColor = UIColor.black
-            textView.font = UIFont.systemFont(ofSize: 16)
+            textView.font = UIFont.systemFont(ofSize: 20)
         }
     }
     
@@ -147,10 +154,12 @@ extension AddPostViewController: UITextViewDelegate{
         return true
     }
     func textViewDidEndEditing(_ textView: UITextView) {
+        print("DidEndEditing")
         if textView.text == "" {
+            print("DidEndEditing 3")
             textView.text = "what are you thinking..."
             textView.textColor = UIColor.lightGray
-            textView.font = UIFont.systemFont(ofSize: 13)
+            textView.font = UIFont.systemFont(ofSize: 20)
         }
     }
 }

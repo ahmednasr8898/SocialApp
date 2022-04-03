@@ -71,7 +71,8 @@ class HomeViewController: UIViewController {
         }
     }
     @IBAction func addNewPostOnClick(_ sender: UIBarButtonItem) {
-        self.goToByPresent(storyboardName: "Main", viewControllerName: AddPostViewController.self, showAs: .automatic)
+      //  self.goToByPresent(storyboardName: "Main", viewControllerName: AddPostViewController.self, showAs: .automatic)
+        self.goToByNavigate(storyboardName: "Main", viewControllerName: AddPostViewController.self)
     }
     func setUpMenu(){
         menu = SideMenuNavigationController(rootViewController: MenuViewController())
