@@ -9,19 +9,16 @@ import FirebaseDatabase
 import FirebaseAuth
 import Toast_Swift
 import FirebaseStorage
+
 class AddPostViewController: UIViewController {
     
     @IBOutlet weak var messegPostTextView: UITextView!
     @IBOutlet weak var imageViewPost: UIImageView!
     @IBOutlet weak var profilePicImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var topPostConstraint: NSLayoutConstraint!
-    @IBOutlet weak var rightPostConstraint: NSLayoutConstraint!
-    @IBOutlet weak var topDescriptionConstraint: NSLayoutConstraint!
-    @IBOutlet weak var topImageConstraint: NSLayoutConstraint!
-    @IBOutlet weak var topAddPhotoConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var addPhotoBtn: UIButton!
+    @IBOutlet weak var bottonAddPhotoConstraint: NSLayoutConstraint!
+
     let ref = Database.database().reference()
     let storage = Storage.storage().reference()
     
@@ -29,24 +26,9 @@ class AddPostViewController: UIViewController {
         super.viewDidLoad()
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.height/2
         profilePicImageView.clipsToBounds = true
-        //setUpConstarint()
-        //setUpDesign()
+        self.hideKeyboardWhenTappedAround()
+        setupViewWhenShowKeyboard()
         setUpMessegePostTextView()
-    }
-   /* func setUpDesign(){
-        descriptionView.backgroundColor = .white
-        descriptionView.layer.cornerRadius = 10.0
-        descriptionView.layer.shadowColor = UIColor.gray.cgColor
-        descriptionView.layer.shadowOffset = CGSize(width: 0.0, height: 3)
-        descriptionView.layer.shadowRadius = 2.0
-        descriptionView.layer.shadowOpacity = 0.7
-    }*/
-    func setUpConstarint(){
-        topPostConstraint.constant = self.view.frame.height * 0.021
-        rightPostConstraint.constant = self.view.frame.height  * 0.023
-        topDescriptionConstraint.constant = self.view.frame.height * 0.075
-        topImageConstraint.constant = self.view.frame.height * 0.043
-        topAddPhotoConstraint.constant = self.view.frame.height * 0.064
     }
     @IBAction func openGalleryOnClick(_ sender: UIButton) {
         let picker = UIImagePickerController()
@@ -161,5 +143,30 @@ extension AddPostViewController: UITextViewDelegate{
             textView.textColor = UIColor.lightGray
             textView.font = UIFont.systemFont(ofSize: 20)
         }
+    }
+}
+
+extension AddPostViewController{
+    func setupViewWhenShowKeyboard(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardApear(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDisApear(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+    
+    func getKeyboardHeight(notification: Notification) -> CGFloat{
+        guard let keyboardHeihgt = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height else {
+            return 0
+        }
+        return keyboardHeihgt
+    }
+    
+    @objc func keyboardApear(notification: Notification){
+        let keyboardHeight = getKeyboardHeight(notification: notification)
+        print(keyboardHeight)
+        bottonAddPhotoConstraint.constant = -keyboardHeight
+    }
+    @objc func keyboardDisApear(notification: Notification){
+        let keyboardHeight = getKeyboardHeight(notification: notification)
+        print(keyboardHeight)
+        bottonAddPhotoConstraint.constant = -34
     }
 }
