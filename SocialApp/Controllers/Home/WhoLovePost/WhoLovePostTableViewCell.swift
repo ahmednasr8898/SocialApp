@@ -13,6 +13,7 @@ class WhoLovePostTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        userImageView.layer.cornerRadius =  4
+        userImageView.layer.cornerRadius =  40
+        userImageView.clipsToBounds = true
     }
 }

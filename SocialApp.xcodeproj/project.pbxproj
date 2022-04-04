@@ -133,12 +133,12 @@
 		797751452585D6D700F041FD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				79D57BEF257DC32E003EA0F6 /* HomeCell */,
-				79CDB4EB258483FC005C355B /* WhoLovePost */,
-				791C6608257F22F100695501 /* Menu */,
 				79D57BE2257DB3B0003EA0F6 /* AddPostViewController.swift */,
 				79D57BE9257DC205003EA0F6 /* HomeViewController.swift */,
 				79CDB4E425847449005C355B /* WhoLovePostViewController.swift */,
+				79D57BEF257DC32E003EA0F6 /* HomeCell */,
+				79CDB4EB258483FC005C355B /* WhoLovePost */,
+				791C6608257F22F100695501 /* Menu */,
 			);
 			path = Home;
 			sourceTree = "<group>";

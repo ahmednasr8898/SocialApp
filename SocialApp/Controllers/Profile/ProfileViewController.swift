@@ -48,7 +48,9 @@ class ProfileViewController: UIViewController {
     func setUpDesign(){
         personalImageView.layer.borderWidth = 5
         personalImageView.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        personalImageView.layer.cornerRadius = 90//personalImageView.frame.size.height/2
         personalImageView.clipsToBounds = true
+        //personalImageView.clipsToBounds = true
     }
     @IBAction func changeProfileImageOnClick(_ sender: UIButton) {
         isProfile = true

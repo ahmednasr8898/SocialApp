@@ -8,8 +8,8 @@ import UIKit
 import  FirebaseAuth
 class MenuViewController: UITableViewController {
         
-    let items = ["Profile", "Settings", "Log Out"]
-    let itemImage = [UIImage(named: "user"), UIImage(named: "settings"), UIImage(named: "logout")]
+    let items = ["Profile", "Personal Info", "Change Password", "Log Out"]
+    let itemImage = [UIImage(named: "profile-1"), UIImage(named: "personal-information"), UIImage(named: "password"), UIImage(named: "logout")]
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +26,20 @@ class MenuViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 80
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemIndex = indexPath.row
         if itemIndex == 0 {
-            print("go to profile page")
+            //go to profile page
             self.goToByPresent(storyboardName: "Main", viewControllerName: ProfileViewController.self, showAs: .automatic)
         }else if itemIndex == 1{
-            print("go to settings page")
-            self.goToByPresent(storyboardName: "Main", viewControllerName: SettingsViewController.self, showAs: .automatic)
+           //go to personal info page
+            self.goToByPresent(storyboardName: "Main", viewControllerName: ChangeInfoViewController.self, showAs: .fullScreen)
         }else if itemIndex == 2{
+            //go to change password page
+            self.goToByPresent(storyboardName: "Main", viewControllerName: ChangePasswordViewController.self, showAs: .fullScreen )
+        }else if itemIndex == 3{
             self.sureLogOut()
         }
     }

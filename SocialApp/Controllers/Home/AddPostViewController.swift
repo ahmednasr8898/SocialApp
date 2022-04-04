@@ -46,7 +46,7 @@ class AddPostViewController: UIViewController {
             uploadPost { (isSuccess) in
                 if isSuccess{
                     self.hideIndicator()
-                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
                     print("add new post")
                 }
             }

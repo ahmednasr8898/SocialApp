@@ -17,7 +17,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var descriptionPostLabel: UILabel!
-    @IBOutlet weak var whoLovePostButton: UIButton!
     var addLoveToPost: (()->())?
     var whoLovePost: (()->())?
     
@@ -45,8 +44,8 @@ class HomeTableViewCell: UITableViewCell {
         postUIView.layer.shadowOffset = CGSize(width: 0.0, height: 3)
         postUIView.layer.shadowRadius = 2.0
         postUIView.layer.shadowOpacity = 0.7
-        /*userImageView.layer.cornerRadius = userImageView.frame.width / 1.5
-        userImageView.clipsToBounds = true*/
+        userImageView.layer.cornerRadius = 40
+        userImageView.clipsToBounds = true
     }
     var getPhotoImagePost: PostsModel!{
         didSet{
@@ -61,9 +60,5 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBAction func didPressedOnLoveButton(_ sender: UIButton) {
         addLoveToPost?()
-    }
-    
-    @IBAction func didPressedOnWhoLovePost(_ sender: Any) {
-        whoLovePost?()
     }
 }
