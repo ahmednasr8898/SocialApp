@@ -109,7 +109,9 @@ extension HomeViewController: UITableViewDataSource{
                 }
             }
         }
+        
         cell.getPhotoImagePost = arrOfPosts[indexPath.row]
+
         // handel love button
         let userID = (Auth.auth().currentUser?.uid) ?? ""
         let personLikePostID = ref.childByAutoId().key ?? ""
@@ -135,7 +137,7 @@ extension HomeViewController: UITableViewDataSource{
                 }
             }
         }
-        
+      
         cell.whoLovePost = {
             let st = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "WhoLovePostViewController") as! WhoLovePostViewController
             st.postID = self.arrOfPosts[indexPath.row].postID

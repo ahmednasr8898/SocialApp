@@ -175,12 +175,12 @@
 			isa = PBXGroup;
 			children = (
 				7978A2AB257B371300650E9A /* Delegate */,
+				7978A2B0257B375500650E9A /* Resources */,
+				7978A299257B316500650E9A /* Extension */,
+				7978A2A6257B32FE00650E9A /* CustomUI */,
 				798FB3072581769800DD4A5D /* Model */,
 				7978A298257B314F00650E9A /* Controllers */,
 				7978A2AF257B373C00650E9A /* Storyboard */,
-				7978A2A6257B32FE00650E9A /* CustomUI */,
-				7978A299257B316500650E9A /* Extension */,
-				7978A2B0257B375500650E9A /* Resources */,
 				79EC380D2580644D00DB02B6 /* GoogleService-Info.plist */,
 			);
 			path = SocialApp;

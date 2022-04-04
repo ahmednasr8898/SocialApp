@@ -7,6 +7,7 @@
 import UIKit
 import Kingfisher
 import FirebaseAuth
+
 class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var postUIView: UIView!
@@ -29,7 +30,14 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setUpDesign()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToWhoLovePost))
+        postUIView.addGestureRecognizer(tapGesture)
     }
+    @objc func goToWhoLovePost() {
+        whoLovePost?()
+    }
+    
     func setUpDesign(){
         postUIView.backgroundColor = .white
         postUIView.layer.cornerRadius = 10.0

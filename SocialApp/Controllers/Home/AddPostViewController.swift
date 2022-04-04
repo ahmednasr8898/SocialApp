@@ -9,6 +9,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import Toast_Swift
 import FirebaseStorage
+import Kingfisher
 
 class AddPostViewController: UIViewController {
     
@@ -26,6 +27,8 @@ class AddPostViewController: UIViewController {
         super.viewDidLoad()
         profilePicImageView.layer.cornerRadius = profilePicImageView.frame.size.height/2
         profilePicImageView.clipsToBounds = true
+        getProfileImages()
+        getCurrentUserInformation()
         self.hideKeyboardWhenTappedAround()
         setupViewWhenShowKeyboard()
         setUpMessegePostTextView()
@@ -168,5 +171,28 @@ extension AddPostViewController{
         let keyboardHeight = getKeyboardHeight(notification: notification)
         print(keyboardHeight)
         bottonAddPhotoConstraint.constant = -34
+    }
+}
+
+extension AddPostViewController{
+    func getProfileImages(){
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        self.ref.child("Users").child(userID).observeSingleEvent(of: .value) { (dataSnap) in
+            if let value = dataSnap.value as? [String: Any]{
+                guard let profilePicture = value["ProfilePicture"] as? String else{ return }
+                self.profilePicImageView.kf.indicatorType = .activity
+                guard let profileUrl = URL(string: profilePicture) else {return}
+                self.profilePicImageView.kf.setImage(with: profileUrl)
+            }
+        }
+    }
+    func getCurrentUserInformation(){
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        ref.child("Users").child(userID).observeSingleEvent(of: .value) { (datasnap) in
+            if let value = datasnap.value as? [String: Any] {
+                guard let name = value["name"] as? String else {return}
+                self.nameLabel.text = name
+            }
+        }
     }
 }
