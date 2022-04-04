@@ -44,7 +44,7 @@ class HomeTableViewCell: UITableViewCell {
         postUIView.layer.shadowOffset = CGSize(width: 0.0, height: 3)
         postUIView.layer.shadowRadius = 2.0
         postUIView.layer.shadowOpacity = 0.7
-        userImageView.layer.cornerRadius = 40
+        userImageView.layer.cornerRadius = 35
         userImageView.clipsToBounds = true
     }
     var getPhotoImagePost: PostsModel!{

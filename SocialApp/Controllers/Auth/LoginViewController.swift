@@ -78,7 +78,8 @@ class LoginViewController: UIViewController {
                 self.hideIndicator()
                 print("Login Success")
                 //go to home page
-                self.goToByNavigate(storyboardName: "Main", viewControllerName: HomeViewController.self)
+                self.navigationController?.popToRootViewController(animated: true)
+                
             }else{
                 //stop indecatior
                 self.hideIndicator()

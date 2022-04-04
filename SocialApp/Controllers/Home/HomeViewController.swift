@@ -25,6 +25,11 @@ class HomeViewController: UIViewController {
         checkCurrentUser()
         setUpTableView()
         setUpMenu()
+        
+        setUpRefreshControl()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        setUpNavigation()
         getAllPosts { (noPosts) in
             if noPosts{
                 self.homeTableView.isHidden = false
@@ -33,10 +38,6 @@ class HomeViewController: UIViewController {
                 self.checkIfTableViewEmpty()
             }
         }
-        setUpRefreshControl()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        setUpNavigation()
     }
     func setUpRefreshControl(){
         reFreshControl.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
@@ -54,6 +55,7 @@ class HomeViewController: UIViewController {
         homeTableView.register(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
     }
     func setUpNavigation(){
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor.systemPink
         self.navigationController?.navigationBar.tintColor = UIColor.black
     }
@@ -168,6 +170,7 @@ extension HomeViewController: UITableViewDelegate{
 extension HomeViewController{
     func getAllPosts(compaltion: @escaping (Bool)->()){
         compaltion(false)
+        self.arrOfPosts = []
         ref.child("AllPosts").observe(.childAdded){ snap in
             if let value = snap.value as? [String: Any] {
                 let posts = PostsModel()

@@ -17,9 +17,10 @@ class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
     override func viewDidLayoutSubviews() {
@@ -44,8 +45,10 @@ class AuthViewController: UIViewController {
     }
     @IBAction func goLoginOnClick(_ sender: UIButton) {
         self.goToByNavigate(storyboardName: "Main", viewControllerName: LoginViewController.self)
+       // self.goToByPresent(storyboardName: "Main", viewControllerName: LoginViewController.self, showAs: .fullScreen)
     }
     @IBAction func goSignupOnClick(_ sender: UIButton) {
+       // self.goToByPresent(storyboardName: "Main", viewControllerName: SignUpViewController.self, showAs: .fullScreen)
         self.goToByNavigate(storyboardName: "Main", viewControllerName: SignUpViewController.self)
     }
 }
